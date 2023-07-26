@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:news_pulse/core/di/modules/netwrok_module.dart';
+import 'package:news_pulse/core/navigation/app_navigator.dart';
 
 import '../constants/app_colors.dart';
 
@@ -14,6 +15,7 @@ class DIManager {
   /// the app starts
   static Future<void> initDI() async {
     // inject app nav here
+    _injectDep(AppNavigator());
 
     // inject app colors here
     _injectDep(const AppColorsController());
