@@ -26,6 +26,7 @@ dependencies:
   logger: ^2.0.1
   hive_flutter: ^1.1.0
   rxdart: ^0.27.7
+  string_validator: ^1.0.0
 
 dev_dependencies:
   flutter_test:
