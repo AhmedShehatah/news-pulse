@@ -3,7 +3,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:news_pulse/core/di/modules/netwrok_module.dart';
 import 'package:news_pulse/core/navigation/app_navigator.dart';
 
+import '../../blocs/app/application_state.dart';
 import '../constants/app_colors.dart';
+import '../shared_prefs/shared_prefs.dart';
 
 final getIt = GetIt.instance;
 
@@ -24,6 +26,10 @@ class DIManager {
     _injectDep(NetowrkModule.provideDio());
 
     // inject app cubit here
+    _injectDep(ApplicationCubit());
+
+    // inject sharedPrefs here
+    await _setupSharedPreference();
 
     ////  ----------------------  Inject Remote data sources here ------------------------
     /// EX
@@ -62,14 +68,18 @@ class DIManager {
     return findDep<AppColorsController>();
   }
 
-  /// It's helper method to retrieve the [ApplicationCubit] Class
-  /// And  {*findAC} equals to FindApplicationCubit
-  // static ApplicationCubit findAC() {
-  //   return findDep<ApplicationCubit>();
-  // }
+  // / It's helper method to retrieve the [ApplicationCubit] Class
+  // / And  {*findAC} equals to FindApplicationCubit
+  static ApplicationCubit findAC() {
+    return findDep<ApplicationCubit>();
+  }
 
   static _setupSharedPreference() async {
     await GetStorage.init();
-    // _injectDep(SharedPrefs());
+    _injectDep(SharedPrefs());
+  }
+
+  static dispose() {
+    findDep<ApplicationCubit>().close();
   }
 }
