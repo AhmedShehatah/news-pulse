@@ -3,7 +3,7 @@ import 'package:news_pulse/core/di/di_manager.dart';
 
 void main() async {
   /// Init DIManger
-  await DIManger.initDI();
+  await DIManager.initDI();
 
   runApp(const MyApp());
 }
