@@ -18,7 +18,7 @@ class DIManager {
     _injectDep(AppNavigator());
 
     // inject app colors here
-    _injectDep(const AppColorsController());
+    _injectDep(AppColorsController());
 
     // inject network module here
     _injectDep(NetowrkModule.provideDio());
