@@ -6,8 +6,8 @@ import '../constants/app_colors.dart';
 
 final getIt = GetIt.instance;
 
-class DIManger {
-  DIManger._();
+class DIManager {
+  DIManager._();
 
   /// this function is responsable for
   /// Init all dependencies as soon as
