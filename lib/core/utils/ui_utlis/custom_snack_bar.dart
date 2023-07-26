@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../constants/app_colors.dart';
+import '../../di/di_manager.dart';
 import '../../errors/base_error.dart';
 import '../screen_utlis/device_utils.dart';
 
@@ -14,10 +16,9 @@ class CustomSnackbar {
       duration: const Duration(seconds: 4),
       borderRadius: ScreenHelper.fromWidth55(0.5),
       animationDuration: const Duration(seconds: 1),
-      // TODO add background color
-      // backgroundColor: DIManager.findDep<AppColorsController>()
-      // .primaryColor
-      // .withOpacity(0.9),
+      backgroundColor: DIManager.findDep<AppColorsController>()
+          .primaryColor
+          .withOpacity(0.9),
       isDismissible: true,
       messageText: Text(
         message,
