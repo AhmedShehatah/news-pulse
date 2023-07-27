@@ -7,8 +7,8 @@ import '../../core/results/result.dart';
 
 class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
   @override
-  Future<Result<List<NewsModel>>> getAllNews({bool isPublisher = false}) {
-    return RemoteDataSource.request<List<NewsModel>>(
+  Future<Result<List<NewsModel>>> getAllNews({bool isPublisher = false}) async {
+    return await RemoteDataSource.request<List<NewsModel>>(
       converterList: (list) =>
           list!.map((model) => NewsModel.fromJson(model)).toList(),
       method: HttpMethod.GET,
