@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:news_pulse/ui/home/pages/home_page.dart';
 
 class RouteGenerator {
   static Route? generateRoutes(RouteSettings settings) {
@@ -33,7 +34,8 @@ class RouteGenerator {
       /// EX
       // case SplashScreen.routeName:
       // return const SplashScreen();
-
+      case HomePage.routeName:
+        return const HomePage();
       default:
         settings = RouteSettings(
             arguments: settings.arguments, name: DefaultRoute.routeName);
