@@ -32,6 +32,7 @@ class _HomePageState extends State<HomePage> {
           } else if (newsState is BaseSuccessState) {
             var newsList = newsState.data as List<NewsModel>;
             return ListView.separated(
+              shrinkWrap: true,
               itemBuilder: (context, index) {
                 return NewsItemModel(model: newsList[index]);
               },

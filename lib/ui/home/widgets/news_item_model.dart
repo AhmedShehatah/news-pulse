@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:news_pulse/core/utils/screen_utlis/device_utils.dart';
+import 'package:news_pulse/core/utils/ui_utlis/vertical_padding.dart';
 import 'package:news_pulse/data/models/news_model.dart';
 
 class NewsItemModel extends StatelessWidget {
@@ -9,21 +11,31 @@ class NewsItemModel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            CachedNetworkImage(imageUrl: model.imageUrl!),
-            ListTile(
-              title: Text(model.title!),
-              subtitle: Text(model.content!),
-            ),
-          ],
+    return ListTile(
+      leading: SizedBox(
+        width: ScreenHelper.fromWidth(30),
+        height: ScreenHelper.fromHeight(30),
+        child: CachedNetworkImage(
+          imageUrl: model.imageUrl!,
         ),
-        Text(model.publisher!),
-        const Spacer(),
-        Text(DateFormat("EEE,MM,dd").format(model.createdAt!)),
-      ],
+      ),
+      title: Text(model.title!),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const VerticalPadding(0.5),
+          Text(model.content!),
+          const VerticalPadding(1),
+          Row(
+            children: [
+              Text(model.publisher!),
+              const Spacer(),
+              Text(DateFormat("EEEE, MM, dd").format(model.createdAt!)),
+            ],
+          )
+        ],
+      ),
     );
   }
 }
