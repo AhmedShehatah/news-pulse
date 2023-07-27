@@ -1,6 +1,5 @@
 class AppEndpoints {
-  // TODO fill set value to baseUrl
-  static const baseUrl = "";
+  static const baseUrl = "https://studentsystem.onrender.com/api/v1";
 
   // receiveTimeout
   static const Duration receiveTimeout = Duration(milliseconds: 15000);
@@ -14,4 +13,5 @@ class AppEndpoints {
   // static const String login = "/login";
   // static const String publisher = "/publisher";
   // static const String publisherNews = "$publisher/news";
+  static const String news = "/news";
 }
