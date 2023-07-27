@@ -14,7 +14,6 @@ abstract class RemoteDataSource {
       Map<String, dynamic>? data,
       Map<String, dynamic>? headers,
       Map<String, dynamic>? queryParameters,
-      bool listRequest = false,
       FormData? formData,
       bool? dataOnly,
       bool? reqiureToken}) async {

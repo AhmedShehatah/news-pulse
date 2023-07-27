@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
 import 'package:news_pulse/core/di/di_manager.dart';
 import 'package:news_pulse/core/shared_prefs/shared_prefs.dart';
 import 'package:news_pulse/core/states/base_fail_state.dart';
@@ -21,6 +22,7 @@ class NewsCubit extends Cubit<NewsState> {
         emit(state.copyWith(getAllNewsState: BaseSuccessState(response.data)));
       } else {
         CustomSnackbar.showErrorSnackbar(response.error!);
+        Logger().e(response.error!.message!);
         emit(state.copyWith(getAllNewsState: BaseFailState(response.error)));
       }
     });
