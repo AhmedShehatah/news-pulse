@@ -49,7 +49,9 @@ class _AppState extends State<App> {
                   builder: ((context, widget) {
                     ScreenHelper(context);
                     // TODO return main widget
-                    return const Placeholder();
+                    return Container(
+                      child: widget,
+                    );
                     // return DrawerOverAllWidget(child: widget);
                   }),
                   theme: ThemeData(
