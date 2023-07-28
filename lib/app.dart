@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
+import 'package:news_pulse/ui/home/pages/home_page.dart';
 
 import 'blocs/app/application_bloc.dart';
 import 'blocs/app/application_state.dart';
@@ -48,7 +49,9 @@ class _AppState extends State<App> {
                   builder: ((context, widget) {
                     ScreenHelper(context);
                     // TODO return main widget
-                    return const Placeholder();
+                    return Container(
+                      child: widget,
+                    );
                     // return DrawerOverAllWidget(child: widget);
                   }),
                   theme: ThemeData(
@@ -62,8 +65,7 @@ class _AppState extends State<App> {
                           secondary: DIManager.findDep<AppColorsController>()
                               .primaryColor)),
                   title: AppConsts.appName,
-                  // TODO Init Route
-                  // initialRoute: SplashScreen.routeName,
+                  initialRoute: HomePage.routeName,
                 );
               },
             );

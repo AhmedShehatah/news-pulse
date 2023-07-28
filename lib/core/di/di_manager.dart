@@ -1,7 +1,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:news_pulse/blocs/news/news_bloc.dart';
 import 'package:news_pulse/core/di/modules/netwrok_module.dart';
 import 'package:news_pulse/core/navigation/app_navigator.dart';
+import 'package:news_pulse/data/sources/news_remote_data_source.dart';
+import 'package:news_pulse/repos/news_repo.dart';
 
 import '../../blocs/app/application_state.dart';
 import '../constants/app_colors.dart';
@@ -34,14 +37,17 @@ class DIManager {
     ////  ----------------------  Inject Remote data sources here ------------------------
     /// EX
     ///  _injectDep<GeneralRemoteDataSource>(const GeneralRemoteDataSourceImpl());
+    _injectDep<NewsRemoteDataSource>(NewsRemoteDataSourceImpl());
 
     /// -------------------------- Inject Repos Here  -------------------------
     /// EX
     ///  _injectDep<RepoInterface>(RepoImpl(findDep()));
+    _injectDep<NewsRepo>(NewsRepoImpl(findDep<NewsRemoteDataSource>()));
 
     /// --------------------------- Inject Cubit Here -----------------------------------
     /// EX
     /// _injectDep(GeneralCubit(findDep<GeneralRepoFacade>()));
+    _injectDep(NewsCubit(findDep<NewsRepo>()));
   }
 
   /// this function is responsable for
