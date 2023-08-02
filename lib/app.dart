@@ -48,11 +48,9 @@ class _AppState extends State<App> {
                   onGenerateRoute: RouteGenerator.generateRoutes,
                   builder: ((context, widget) {
                     ScreenHelper(context);
-                    // TODO return main widget
                     return Container(
                       child: widget,
                     );
-                    // return DrawerOverAllWidget(child: widget);
                   }),
                   theme: ThemeData(
                       // Making Roboto Regular the default font for Project
