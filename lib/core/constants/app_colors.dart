@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 class AppColorsController {
   AppColorsController();
 
-  final Rx<Color?> _primaryColor = const Color(0xDDD42B1E).obs;
-  final String _primaryColorStr = "#EE3E43";
+  final Rx<Color?> _primaryColor = const Color(0xFF282828).obs;
+  final String _primaryColorStr = "#282828";
 
   Color get primaryColor => _primaryColor.value ?? defaultPrimaryColor;
 
