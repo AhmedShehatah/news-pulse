@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_pulse/core/constants/app_fonts.dart';
 import 'package:news_pulse/core/constants/dimens.dart';
 import 'package:news_pulse/core/di/di_manager.dart';
 import 'package:news_pulse/core/utils/screen_utlis/device_utils.dart';
@@ -24,30 +25,62 @@ class TextFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: Dimens.cardInternalPadding,
-      // padding: const EdgeInsets.all(5),
-      child: TextField(
-        obscureText: isPassword,
-        enableSuggestions: false,
-        autocorrect: false,
-        decoration: InputDecoration(
-          prefixIcon: fieldIcon,
-          filled: true,
-
-          floatingLabelStyle: const TextStyle(
-            color: Colors.blueGrey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            label,
+            style: TextStyle(
+                fontSize: AppFontSize.fontSize_16,
+                color: DIManager.findCC().lightgrey),
           ),
-
-          // icon: Icon(Icons.abc),
-          labelStyle: TextStyle(color: DIManager.findCC().black),
-          labelText: label,
-          constraints: BoxConstraints(maxHeight: ScreenHelper.fromHeight(6)),
-          hintText: hint,
-          fillColor: DIManager.findCC().white,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(Dimens.bigBorderRadius),
-          ),
+          SizedBox(height: ScreenHelper.fromHeight(1.5)),
+          TextField(
+            style: TextStyle(
+                letterSpacing: 2,
+                color: DIManager.findCC().black,
+                fontSize: AppFontSize.fontSize_14),
+            obscureText: isPassword,
+            enableSuggestions: false,
+            autocorrect: false,
+            decoration: InputDecoration(
+              floatingLabelBehavior: FloatingLabelBehavior.never,
+              prefixIcon: fieldIcon,
+              filled: true,
+              constraints:
+                  BoxConstraints(maxHeight: ScreenHelper.fromHeight(6)),
+              hintText: hint,
+              labelText: label,
+              fillColor: DIManager.findCC().white,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(Dimens.bigBorderRadius),
+              ),
+            ),
+          )
+        ],
+      ),
+    )
+        /*TextField(
+      style: TextStyle(
+          letterSpacing: 2,
+          color: DIManager.findCC().black,
+          fontSize: AppFontSize.fontSize_14),
+      obscureText: isPassword,
+      enableSuggestions: false,
+      autocorrect: false,
+      decoration: InputDecoration(
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        prefixIcon: fieldIcon,
+        filled: true,
+        constraints: BoxConstraints(maxHeight: ScreenHelper.fromHeight(6)),
+        hintText: hint,
+        labelText: label,
+        fillColor: DIManager.findCC().white,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(Dimens.bigBorderRadius),
         ),
       ),
-    );
+    )*/
+        ;
   }
 }
