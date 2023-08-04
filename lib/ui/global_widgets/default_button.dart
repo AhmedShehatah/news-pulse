@@ -17,8 +17,9 @@ class DefaultButton extends StatelessWidget {
       margin: Dimens.defaultPageHorizontalPaddingSmall,
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
+          ),
           textStyle: TextStyle(
             fontSize: AppFontSize.fontSize_18,
           ),
