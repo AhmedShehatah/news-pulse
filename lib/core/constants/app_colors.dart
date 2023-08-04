@@ -42,4 +42,5 @@ class AppColorsController {
   Color darkGreyBorderColor = const Color(0xff4f617d);
   Color jeansBlueColor = const Color(0xffecf1f9);
   Color invalidGreyColor = const Color(0xfff2f4f9);
+  Color lightgrey = const Color(0xFFA9A6A6);
 }
