@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:news_pulse/core/constants/app_fonts.dart';
 import 'package:news_pulse/core/di/di_manager.dart';
 import 'package:news_pulse/core/enums/text_field_icons.dart';
 import 'package:news_pulse/core/utils/screen_utlis/device_utils.dart';
@@ -7,6 +6,7 @@ import 'package:news_pulse/ui/global_widgets/default_button.dart';
 import 'package:news_pulse/ui/global_widgets/text_field_widget.dart';
 
 import '../../../core/constants/dimens.dart';
+import '../../../core/utils/ui_utlis/vertical_padding.dart';
 
 class SignInPage extends StatelessWidget {
   SignInPage({super.key});
@@ -32,7 +32,7 @@ class SignInPage extends StatelessWidget {
                 fit: BoxFit.contain,
               ),
             ),
-            SizedBox(height: ScreenHelper.fromHeight(10)),
+            VerticalPadding(ScreenHelper.fromHeight(1.25)),
             TextFieldWidget(
                 fieldIcon: iconsList[TextFieldIcon.email]!,
                 textController: emailController,
