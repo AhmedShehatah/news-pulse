@@ -11,7 +11,7 @@ class TextFieldWidget extends StatelessWidget {
     required this.textController,
     required this.label,
     required this.hint,
-    this.heigh = 50,
+    this.heigh = 6,
     super.key,
   });
   final bool isPassword;
@@ -48,7 +48,7 @@ class TextFieldWidget extends StatelessWidget {
               prefixIcon: fieldIcon,
               filled: true,
               constraints:
-                  BoxConstraints(maxHeight: ScreenHelper.fromHeight(6)),
+                  BoxConstraints(maxHeight: ScreenHelper.fromHeight(heigh)),
               hintText: hint,
               labelText: label,
               fillColor: DIManager.findCC().white,
