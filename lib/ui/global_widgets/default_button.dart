@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_pulse/core/constants/app_fonts.dart';
 import 'package:news_pulse/core/constants/dimens.dart';
 import 'package:news_pulse/core/di/di_manager.dart';
+import 'package:news_pulse/core/utils/screen_utlis/device_utils.dart';
 
 class DefaultButton extends StatelessWidget {
   const DefaultButton(
@@ -13,7 +14,7 @@ class DefaultButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       // color: DIManager.findCC().white,
-      width: double.infinity,
+      width: ScreenHelper.width,
       margin: Dimens.defaultPageHorizontalPaddingSmall,
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
