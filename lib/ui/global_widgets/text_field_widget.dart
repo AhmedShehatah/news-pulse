@@ -59,28 +59,6 @@ class TextFieldWidget extends StatelessWidget {
           )
         ],
       ),
-    )
-        /*TextField(
-      style: TextStyle(
-          letterSpacing: 2,
-          color: DIManager.findCC().black,
-          fontSize: AppFontSize.fontSize_14),
-      obscureText: isPassword,
-      enableSuggestions: false,
-      autocorrect: false,
-      decoration: InputDecoration(
-        floatingLabelBehavior: FloatingLabelBehavior.never,
-        prefixIcon: fieldIcon,
-        filled: true,
-        constraints: BoxConstraints(maxHeight: ScreenHelper.fromHeight(6)),
-        hintText: hint,
-        labelText: label,
-        fillColor: DIManager.findCC().white,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Dimens.bigBorderRadius),
-        ),
-      ),
-    )*/
-        ;
+    );
   }
 }
