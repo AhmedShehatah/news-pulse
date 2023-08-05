@@ -1,7 +1,13 @@
 part of 'auth_cubit.dart';
 
 class AuthState {
-  BaseState unAutharized;
-  AuthState({required this.unAutharized});
-  factory AuthState.initState() => AuthState(unAutharized: BaseInitState());
+  BaseState signIn;
+  AuthState({required this.signIn});
+  factory AuthState.initState() => AuthState(signIn: BaseInitState());
+  AuthState copyWith({
+    BaseState? signIn,
+  }) =>
+      AuthState(
+        signIn: signIn ?? this.signIn,
+      );
 }

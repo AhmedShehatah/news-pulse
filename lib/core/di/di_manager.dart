@@ -3,10 +3,13 @@ import 'package:get_storage/get_storage.dart';
 import 'package:news_pulse/blocs/news/news_bloc.dart';
 import 'package:news_pulse/core/di/modules/netwrok_module.dart';
 import 'package:news_pulse/core/navigation/app_navigator.dart';
+import 'package:news_pulse/data/sources/auth_remote_data_source.dart';
 import 'package:news_pulse/data/sources/news_remote_data_source.dart';
 import 'package:news_pulse/repos/news_repo.dart';
 
 import '../../blocs/app/application_state.dart';
+import '../../blocs/auth/auth_cubit.dart';
+import '../../repos/auth_repo.dart';
 import '../constants/app_colors.dart';
 import '../shared_prefs/shared_prefs.dart';
 
@@ -38,16 +41,19 @@ class DIManager {
     /// EX
     ///  _injectDep<GeneralRemoteDataSource>(const GeneralRemoteDataSourceImpl());
     _injectDep<NewsRemoteDataSource>(NewsRemoteDataSourceImpl());
+    _injectDep<AuthRemoteDataSource>(AuthRemoteDataSourceImp());
 
     /// -------------------------- Inject Repos Here  -------------------------
     /// EX
     ///  _injectDep<RepoInterface>(RepoImpl(findDep()));
     _injectDep<NewsRepo>(NewsRepoImpl(findDep<NewsRemoteDataSource>()));
+    _injectDep<AuthRepo>(AuthRepoImp(findDep<AuthRemoteDataSource>()));
 
     /// --------------------------- Inject Cubit Here -----------------------------------
     /// EX
     /// _injectDep(GeneralCubit(findDep<GeneralRepoFacade>()));
     _injectDep(NewsCubit(findDep<NewsRepo>()));
+    _injectDep(AuthCubit(findDep<AuthRepo>()));
   }
 
   /// this function is responsable for

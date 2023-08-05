@@ -36,25 +36,3 @@ class DefaultButton extends StatelessWidget {
     );
   }
 }
-/*ButtonStyle(
-            foregroundColor:
-                MaterialStateProperty.all(DIManager.findCC().lightgrey),
-            side: MaterialStateProperty.all(
-                BorderSide(color: DIManager.findCC().lightgrey)),
-            backgroundColor:
-                MaterialStateProperty.all(DIManager.findCC().primaryColor),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            )),*/
-            /*OutlinedButton.styleFrom(
-          textStyle: TextStyle(
-            fontSize: AppFontSize.fontSize_18,
-          ),
-          backgroundColor: DIManager.findCC().primaryColor,
-          foregroundColor: DIManager.findCC().lightgrey,
-          side: BorderSide(
-            color: DIManager.findCC().lightgrey,
-          ),
-        ), */
