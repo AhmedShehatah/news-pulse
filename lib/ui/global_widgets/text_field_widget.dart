@@ -3,6 +3,7 @@ import 'package:news_pulse/core/constants/app_fonts.dart';
 import 'package:news_pulse/core/constants/dimens.dart';
 import 'package:news_pulse/core/di/di_manager.dart';
 import 'package:news_pulse/core/utils/screen_utlis/device_utils.dart';
+import 'package:news_pulse/core/utils/ui_utlis/vertical_padding.dart';
 
 class TextFieldWidget extends StatelessWidget {
   const TextFieldWidget({
@@ -34,7 +35,7 @@ class TextFieldWidget extends StatelessWidget {
                 fontSize: AppFontSize.fontSize_16,
                 color: DIManager.findCC().lightgrey),
           ),
-          SizedBox(height: ScreenHelper.fromHeight(1.5)),
+          const VerticalPadding(2.5),
           TextField(
             style: TextStyle(
                 letterSpacing: 2,
