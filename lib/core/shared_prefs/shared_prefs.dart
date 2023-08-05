@@ -11,7 +11,7 @@ class SharedPrefs {
   //UserName
   final ReadWriteValue<String?> _appUserName =
       ReadWriteValue("appUserName${AppConsts.appName}", null);
-  String? getUserNAme() => _appUserName.val;
+  String? getUserName() => _appUserName.val;
   void setUserName(String userName) => _appUserName.val = userName;
   //Id
   final ReadWriteValue<String?> _appId =
