@@ -14,6 +14,7 @@ class AppEndpoints {
   // static const String publisher = "/publisher";
   // static const String publisherNews = "$publisher/news";
   static const String news = "/news";
+  static var contactUs = "/contact";
+  static const String signIn = "/auth/login";
 
-  static var contactUs = "/v1/contact";
 }
