@@ -12,7 +12,6 @@ import 'package:news_pulse/ui/global_widgets/text_field_widget.dart';
 import '../../../core/constants/dimens.dart';
 import '../../../core/utils/ui_utlis/vertical_padding.dart';
 import '../../../data/models/sign_in_model.dart';
-import '../../global_widgets/loading_widgets.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -86,11 +85,9 @@ class _SignInPageState extends State<SignInPage> {
                     const VerticalPadding(5),
                     //TODO: Change Loading Color
                     DefaultButton(
-                      buttonText: isLoading
-                          ? WidgetDotFade(
-                              color: DIManager.findCC().white, size: 20.0)
-                          : const Text("Submit"),
-                      onPressed: isLoading ? () {} : submit,
+                      isLoading: isLoading,
+                      buttonText: 'Submit',
+                      onPressed: submit,
                     ),
                     const VerticalPadding(11),
                   ],

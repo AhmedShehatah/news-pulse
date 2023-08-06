@@ -40,6 +40,7 @@ class TextFieldWidget extends StatelessWidget {
           ),
           const VerticalPadding(2.5),
           TextFormField(
+            textInputAction: TextInputAction.next,
             //maxLines: !isPassword ? 20 : 1,
             //expands: true,
             controller: textController,
