@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_pulse/blocs/auth/auth_cubit.dart';
 import 'package:news_pulse/core/di/di_manager.dart';
 import 'package:news_pulse/core/enums/text_field_icons.dart';
-import 'package:news_pulse/core/states/base_success_state.dart';
+import 'package:news_pulse/core/states/base_wait_state.dart';
 import 'package:news_pulse/core/validators/email_validator.dart';
 import 'package:news_pulse/core/validators/password_validator.dart';
 import 'package:news_pulse/core/validators/required_validator.dart';
@@ -12,6 +12,7 @@ import 'package:news_pulse/ui/global_widgets/text_field_widget.dart';
 import '../../../core/constants/dimens.dart';
 import '../../../core/utils/ui_utlis/vertical_padding.dart';
 import '../../../data/models/sign_in_model.dart';
+import '../../global_widgets/loading_widgets.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -42,12 +43,10 @@ class _SignInPageState extends State<SignInPage> {
       appBar: AppBar(),
       backgroundColor: DIManager.findCC().primaryColor,
       body: BlocBuilder<AuthCubit, AuthState>(
-        bloc: DIManager.findDep<AuthCubit>(),
-        builder: (context, state) {
-          var authState = state.signIn;
-          if (authState is BaseSuccessState) {
-            return Container();
-          } else {
+          bloc: DIManager.findDep<AuthCubit>(),
+          builder: (context, state) {
+            bool isLoading = (state.signIn is BaseLoadingState);
+
             return SingleChildScrollView(
               child: Form(
                 key: _formKey,
@@ -85,15 +84,20 @@ class _SignInPageState extends State<SignInPage> {
                       isPassword: true,
                     ),
                     const VerticalPadding(5),
-                    DefaultButton(buttonText: "Submit", onPressed: submit),
+                    //TODO: Change Loading Color
+                    DefaultButton(
+                      buttonText: isLoading
+                          ? WidgetDotFade(
+                              color: DIManager.findCC().white, size: 20.0)
+                          : const Text("Submit"),
+                      onPressed: isLoading ? () {} : submit,
+                    ),
                     const VerticalPadding(11),
                   ],
                 ),
               ),
             );
-          }
-        },
-      ),
+          }),
     );
   }
 
