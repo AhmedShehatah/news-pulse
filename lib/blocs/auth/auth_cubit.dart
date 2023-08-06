@@ -1,10 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:news_pulse/core/di/di_manager.dart';
+import 'package:news_pulse/core/navigation/app_navigator.dart';
 import 'package:news_pulse/core/shared_prefs/shared_prefs.dart';
 import 'package:news_pulse/core/states/base_init_state.dart';
 import 'package:news_pulse/core/states/base_states.dart';
 import 'package:news_pulse/data/models/sign_in_model.dart';
 import 'package:news_pulse/repos/auth_repo.dart';
+import 'package:news_pulse/ui/home/pages/home_page.dart';
 
 import '../../core/states/base_success_state.dart';
 import '../../core/utils/ui_utlis/custom_snack_bar.dart';
@@ -21,7 +23,12 @@ class AuthCubit extends Cubit<AuthState> {
       if (response.hasDataOnly) {
         publisher = response.data;
         DIManager.findDep<SharedPrefs>().setToken(publisher!.token!);
-        emit(state.copyWith(signIn: BaseSuccessState(response.data)));
+        DIManager.findDep<SharedPrefs>().setId(publisher!.data!.id!);
+        DIManager.findDep<SharedPrefs>()
+            .setUserName(publisher!.data!.userName!);
+        DIManager.findDep<SharedPrefs>().setEmail(publisher!.data!.email!);
+        emit(state.copyWith(signIn: const BaseSuccessState()));
+        DIManager.findDep<AppNavigator>().offAll(HomePage.routeName);
       } else {
         CustomSnackbar.showErrorSnackbar(response.error!);
       }
