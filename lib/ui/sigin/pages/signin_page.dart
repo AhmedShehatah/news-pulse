@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_pulse/blocs/auth/auth_cubit.dart';
-import 'package:news_pulse/core/constants/app_fonts.dart';
 import 'package:news_pulse/core/di/di_manager.dart';
 import 'package:news_pulse/core/enums/text_field_icons.dart';
-import 'package:news_pulse/core/states/base_init_state.dart';
 import 'package:news_pulse/core/states/base_success_state.dart';
-import 'package:news_pulse/core/states/base_wait_state.dart';
 import 'package:news_pulse/core/validators/email_validator.dart';
 import 'package:news_pulse/core/validators/password_validator.dart';
 import 'package:news_pulse/core/validators/required_validator.dart';
 import 'package:news_pulse/ui/global_widgets/default_button.dart';
 import 'package:news_pulse/ui/global_widgets/text_field_widget.dart';
-import 'package:news_pulse/ui/home/pages/home_page.dart';
 import '../../../core/constants/dimens.dart';
 import '../../../core/utils/ui_utlis/vertical_padding.dart';
 import '../../../data/models/sign_in_model.dart';
 
 class SignInPage extends StatefulWidget {
-  SignInPage({super.key});
+  const SignInPage({super.key});
   static const String routName = "/sign-in-page";
 
   @override
@@ -50,7 +46,6 @@ class _SignInPageState extends State<SignInPage> {
         builder: (context, state) {
           var authState = state.signIn;
           if (authState is BaseSuccessState) {
-            Navigator.pushNamed(context, HomePage.routeName);
             return Container();
           } else {
             return SingleChildScrollView(
