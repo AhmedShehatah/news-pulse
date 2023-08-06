@@ -31,6 +31,11 @@ class _HomePageState extends State<HomePage> {
             );
           } else if (newsState is BaseSuccessState) {
             var newsList = newsState.data as List<NewsModel>;
+            if (newsList.isEmpty) {
+              return const Center(
+                child: Text("New Current News"),
+              );
+            }
             return ListView.separated(
               shrinkWrap: true,
               itemBuilder: (context, index) {
