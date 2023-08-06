@@ -5,7 +5,8 @@ import '../utils/screen_utlis/device_utils.dart';
 
 class Dimens {
   Dimens._();
-
+  static EdgeInsets textFormFieldPadding =
+      EdgeInsets.fromLTRB(10.w, 10.h, 10.w, 30.h);
   static EdgeInsets cardInternalPadding =
       EdgeInsets.symmetric(vertical: 14.h, horizontal: 18.w);
   static EdgeInsets cardSmallInternalPadding =

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_pulse/core/constants/app_fonts.dart';
 import 'package:news_pulse/core/constants/dimens.dart';
 import 'package:news_pulse/core/di/di_manager.dart';
-import 'package:news_pulse/core/utils/screen_utlis/device_utils.dart';
+//import 'package:news_pulse/core/utils/screen_utlis/device_utils.dart';
 import 'package:news_pulse/core/utils/ui_utlis/vertical_padding.dart';
 import 'package:news_pulse/core/validators/base_validator.dart';
 
@@ -13,7 +13,7 @@ class TextFieldWidget extends StatelessWidget {
     required this.textController,
     required this.label,
     required this.hint,
-    this.heigh = 6,
+    //  this.heigh = 9,
     required this.validators,
     super.key,
   });
@@ -21,7 +21,7 @@ class TextFieldWidget extends StatelessWidget {
   final Icon fieldIcon;
   final String label;
   final String hint;
-  final double heigh;
+//  final double heigh;
   final TextEditingController textController;
   final List<BaseValidator?> validators;
 
@@ -40,6 +40,8 @@ class TextFieldWidget extends StatelessWidget {
           ),
           const VerticalPadding(2.5),
           TextFormField(
+            //maxLines: !isPassword ? 20 : 1,
+            //expands: true,
             controller: textController,
             validator: (value) {
               return BaseValidator.validateValue(
@@ -53,16 +55,23 @@ class TextFieldWidget extends StatelessWidget {
             enableSuggestions: false,
             autocorrect: false,
             decoration: InputDecoration(
+              // errorBorder: InputBorder.none,
+              errorStyle: TextStyle(
+                  fontSize: AppFontSize.fontSize_12,
+                  color: DIManager.findCC().white),
               floatingLabelBehavior: FloatingLabelBehavior.never,
               prefixIcon: fieldIcon,
               filled: true,
-              constraints: BoxConstraints(
-                  minHeight: ScreenHelper.fromHeight(heigh),
-                  maxHeight: ScreenHelper.fromHeight(heigh + 3)),
+              // constraints: BoxConstraints(
+              //     // minHeight: ScreenHelper.fromHeight(heigh),
+              //     // maxHeight: ScreenHelper.fromHeight(heigh + 3),
+              //     ),
               hintText: hint,
               labelText: label,
+              contentPadding: Dimens.textFormFieldPadding,
               fillColor: DIManager.findCC().white,
               border: OutlineInputBorder(
+                // borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(Dimens.bigBorderRadius),
               ),
             ),
