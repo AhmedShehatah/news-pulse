@@ -45,67 +45,64 @@ class _ContactUsState extends State<ContactUs> {
     return Scaffold(
       appBar: AppBar(),
       backgroundColor: DIManager.findCC().primaryColor,
-      body: BlocBuilder<ContactUsCubit, ContactUsState>(
+      body: BlocConsumer<ContactUsCubit, ContactUsState>(
         bloc: DIManager.findDep<ContactUsCubit>(),
+        listener: (context, state) {
+          if (state.getContactUs is BaseSuccessState) {
+            emailController.clear();
+            reportController.clear();
+          }
+        },
         builder: (context, state) {
           var contactUsState = state.getContactUs;
-          if (contactUsState is BaseSuccessState) {
-            return Container();
-          } else {
-            return SingleChildScrollView(
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const VerticalPadding(5),
-                    Padding(
-                      padding: Dimens.horizontalPadding1,
-                      child: Image.asset(
-                        "assets/images/logo_transparent.png",
-                        fit: BoxFit.contain,
-                      ),
+          bool isLoading = contactUsState is BaseLoadingState;
+
+          return SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const VerticalPadding(5),
+                  Padding(
+                    padding: Dimens.horizontalPadding1,
+                    child: Image.asset(
+                      "assets/images/logo_transparent.png",
+                      fit: BoxFit.contain,
                     ),
-                    const VerticalPadding(7),
-                    TextFieldWidget(
-                      fieldIcon: iconsList[TextFieldIcon.email]!,
-                      textController: emailController,
-                      label: "Email",
-                      hint: "example@test.com",
-                      validators: [
-                        EmailValidator(),
-                      ],
-                    ),
-                    TextFieldWidget(
-                      textController: reportController,
-                      label: "Message",
-                      hint: "Enter Message",
-                      validators: [
-                        RequiredValidator(),
-                      ],
-                      minLine: 6,
-                      maxLine: 6,
-                    ),
-                    const VerticalPadding(4),
-                    BlocBuilder<ContactUsCubit, ContactUsState>(
-                      bloc: DIManager.findDep<ContactUsCubit>(),
-                      builder: (context, state) {
-                        bool isLoading =
-                            (state.getContactUs is BaseLoadingState);
-                        return DefaultButton(
-                          isLoading: isLoading,
-                          buttonText: "Submit",
-                          onPressed: submit,
-                        );
-                      },
-                    ),
-                    const VerticalPadding(11),
-                  ],
-                ),
+                  ),
+                  const VerticalPadding(7),
+                  TextFieldWidget(
+                    fieldIcon: iconsList[TextFieldIcon.email]!,
+                    textController: emailController,
+                    label: "Email",
+                    hint: "example@test.com",
+                    validators: [
+                      EmailValidator(),
+                    ],
+                  ),
+                  TextFieldWidget(
+                    textController: reportController,
+                    label: "Message",
+                    hint: "Enter Message",
+                    validators: [
+                      RequiredValidator(),
+                    ],
+                    minLine: 6,
+                    maxLine: 6,
+                  ),
+                  const VerticalPadding(4),
+                  DefaultButton(
+                    isLoading: isLoading,
+                    buttonText: "Submit",
+                    onPressed: submit,
+                  ),
+                  const VerticalPadding(11),
+                ],
               ),
-            );
-          }
+            ),
+          );
         },
       ),
     );
