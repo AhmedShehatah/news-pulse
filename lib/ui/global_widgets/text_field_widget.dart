@@ -9,21 +9,25 @@ import 'package:news_pulse/core/validators/base_validator.dart';
 class TextFieldWidget extends StatelessWidget {
   const TextFieldWidget({
     this.isPassword = false,
-    required this.fieldIcon,
+    this.fieldIcon,
     required this.textController,
     required this.label,
     required this.hint,
     //  this.heigh = 9,
     required this.validators,
+    this.maxLine = 1,
+    this.minLine = 1,
     super.key,
   });
   final bool isPassword;
-  final Icon fieldIcon;
+  final Icon? fieldIcon;
   final String label;
   final String hint;
 //  final double heigh;
   final TextEditingController textController;
   final List<BaseValidator?> validators;
+  final int maxLine;
+  final int minLine;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +44,8 @@ class TextFieldWidget extends StatelessWidget {
           ),
           const VerticalPadding(2.5),
           TextFormField(
+            minLines: minLine,
+            maxLines: maxLine,
             textInputAction: TextInputAction.next,
             //maxLines: !isPassword ? 20 : 1,
             //expands: true,
@@ -72,7 +78,7 @@ class TextFieldWidget extends StatelessWidget {
               contentPadding: Dimens.textFormFieldPadding,
               fillColor: DIManager.findCC().white,
               border: OutlineInputBorder(
-                // borderSide: BorderSide.none,
+                //borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(Dimens.bigBorderRadius),
               ),
             ),
