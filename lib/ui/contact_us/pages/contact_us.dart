@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_pulse/blocs/info/info_cubit.dart';
 import 'package:news_pulse/blocs/info/info_state.dart';
+import 'package:news_pulse/core/states/base_success_state.dart';
 import 'package:news_pulse/core/states/base_wait_state.dart';
 import 'package:news_pulse/core/validators/email_validator.dart';
 import 'package:news_pulse/core/validators/required_validator.dart';
@@ -47,53 +48,64 @@ class _ContactUsState extends State<ContactUs> {
       body: BlocBuilder<ContactUsCubit, ContactUsState>(
         bloc: DIManager.findDep<ContactUsCubit>(),
         builder: (context, state) {
-          bool isLoading = (state.getContactUs is BaseLoadingState);
-          return SingleChildScrollView(
-            child: Form(
-              key: _formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const VerticalPadding(5),
-                  Padding(
-                    padding: Dimens.horizontalPadding1,
-                    child: Image.asset(
-                      "assets/images/logo_transparent.png",
-                      fit: BoxFit.contain,
+          var contactUsState = state.getContactUs;
+          if (contactUsState is BaseSuccessState) {
+            return Container();
+          } else {
+            return SingleChildScrollView(
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const VerticalPadding(5),
+                    Padding(
+                      padding: Dimens.horizontalPadding1,
+                      child: Image.asset(
+                        "assets/images/logo_transparent.png",
+                        fit: BoxFit.contain,
+                      ),
                     ),
-                  ),
-                  const VerticalPadding(7),
-                  TextFieldWidget(
-                    fieldIcon: iconsList[TextFieldIcon.email]!,
-                    textController: emailController,
-                    label: "Email",
-                    hint: "example@test.com",
-                    validators: [
-                      EmailValidator(),
-                    ],
-                  ),
-                  TextFieldWidget(
-                    textController: reportController,
-                    label: "Message",
-                    hint: "Enter Message",
-                    validators: [
-                      RequiredValidator(),
-                    ],
-                    minLine: 6,
-                    maxLine: 6,
-                  ),
-                  const VerticalPadding(4),
-                  DefaultButton(
-                    isLoading: isLoading,
-                    buttonText: "Submit",
-                    onPressed: submit,
-                  ),
-                  const VerticalPadding(11),
-                ],
+                    const VerticalPadding(7),
+                    TextFieldWidget(
+                      fieldIcon: iconsList[TextFieldIcon.email]!,
+                      textController: emailController,
+                      label: "Email",
+                      hint: "example@test.com",
+                      validators: [
+                        EmailValidator(),
+                      ],
+                    ),
+                    TextFieldWidget(
+                      textController: reportController,
+                      label: "Message",
+                      hint: "Enter Message",
+                      validators: [
+                        RequiredValidator(),
+                      ],
+                      minLine: 6,
+                      maxLine: 6,
+                    ),
+                    const VerticalPadding(4),
+                    BlocBuilder<ContactUsCubit, ContactUsState>(
+                      bloc: DIManager.findDep<ContactUsCubit>(),
+                      builder: (context, state) {
+                        bool isLoading =
+                            (state.getContactUs is BaseLoadingState);
+                        return DefaultButton(
+                          isLoading: isLoading,
+                          buttonText: "Submit",
+                          onPressed: submit,
+                        );
+                      },
+                    ),
+                    const VerticalPadding(11),
+                  ],
+                ),
               ),
-            ),
-          );
+            );
+          }
         },
       ),
     );
