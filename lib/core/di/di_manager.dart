@@ -85,9 +85,9 @@ class DIManager {
   }
 
   /// this function is helpers to find navgiator
-// static AppNavigator findNavigator() {
-//     return findDep<AppNavigator>();
-//   }
+  static AppNavigator findNavigator() {
+    return findDep<AppNavigator>();
+  }
 
   /// It's helper method to retrieve the [AppColorsController] Class
   /// And  {*findCC} equals to FindColorsController
