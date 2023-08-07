@@ -10,7 +10,6 @@ import 'package:news_pulse/ui/contact_us/pages/contact_us.dart';
 import 'package:news_pulse/ui/home/pages/home_page.dart';
 import 'package:news_pulse/ui/sigin/pages/signin_page.dart';
 
-
 import 'blocs/app/application_bloc.dart';
 import 'blocs/app/application_state.dart';
 import 'core/constants/app_colors.dart';
@@ -70,9 +69,8 @@ class _AppState extends State<App> {
                           secondary: DIManager.findDep<AppColorsController>()
                               .primaryColor)),
                   title: AppConsts.appName,
-
-                  initialRoute: SignInPage.routName,
-
+                  //initialRoute: SignInPage.routName,
+                  initialRoute: ContactUs.routeName,
                 );
               },
             );
