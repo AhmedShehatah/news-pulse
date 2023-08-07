@@ -16,5 +16,5 @@ class AppEndpoints {
   static const String news = "/news";
   static var contactUs = "/contact";
   static const String signIn = "/auth/login";
-
+  static const String signUp = "/auth/signup";
 }
