@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-        const Duration(seconds: 3),
+        const Duration(seconds: 5),
         () => Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => const HomeParentPage())));
   }
@@ -43,14 +43,25 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           const VerticalPadding(7),
           Padding(
-              padding: Dimens.horizontalPadding2,
-              child: Text(
-                "Your comprehensive guide to the latest local and international news",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: DIManager.findCC().white,
-                ),
-              ))
+            padding: Dimens.horizontalPadding1,
+            child: Text(
+              "Your comprehensive guide to the latest local",
+              style: TextStyle(
+                fontSize: 12,
+                color: DIManager.findCC().grey,
+              ),
+            ),
+          ),
+          Padding(
+            padding: Dimens.horizontalPadding2,
+            child: Text(
+              "and international news",
+              style: TextStyle(
+                fontSize: 12,
+                color: DIManager.findCC().grey,
+              ),
+            ),
+          ),
         ],
       ),
     );
