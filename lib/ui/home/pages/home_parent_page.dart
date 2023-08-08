@@ -1,19 +1,18 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:news_pulse/ui/home/pages/home_page.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../../core/di/di_manager.dart';
+import 'home_page.dart';
 
-class BottomBar extends StatefulWidget {
-  const BottomBar({super.key});
-  static const String routeName = "/bottom-bar";
+class HomeParentPage extends StatefulWidget {
+  const HomeParentPage({super.key});
+  static const String routeName = "/";
 
   @override
-  State<BottomBar> createState() => _BotttomBarState();
+  State<HomeParentPage> createState() => _HomeParentPageState();
 }
 
-class _BotttomBarState extends State<BottomBar> {
+class _HomeParentPageState extends State<HomeParentPage> {
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
   @override
@@ -23,6 +22,7 @@ class _BotttomBarState extends State<BottomBar> {
       controller: _controller,
       screens: _buildScreens(),
       items: _navBarsItems(),
+
       confineInSafeArea: true,
       backgroundColor: DIManager.findCC().primaryColor,
       handleAndroidBackButtonPress: true, // Default is true.
@@ -59,14 +59,14 @@ List<PersistentBottomNavBarItem> _navBarsItems() {
     PersistentBottomNavBarItem(
       icon: const Icon(CupertinoIcons.home),
       title: ("Home"),
-      activeColorPrimary: CupertinoColors.activeBlue,
-      inactiveColorPrimary: CupertinoColors.systemGrey,
+      activeColorPrimary: DIManager.findCC().activeBlue,
+      inactiveColorPrimary: DIManager.findCC().systemGrey,
     ),
     PersistentBottomNavBarItem(
       icon: const Icon(CupertinoIcons.add),
       title: ("Add"),
-      activeColorPrimary: CupertinoColors.activeBlue,
-      inactiveColorPrimary: CupertinoColors.systemGrey,
+      activeColorPrimary: DIManager.findCC().activeBlue,
+      inactiveColorPrimary: DIManager.findCC().systemGrey,
     ),
   ];
 }
