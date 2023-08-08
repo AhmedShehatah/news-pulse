@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:news_pulse/core/shared_prefs/shared_prefs.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../../core/di/di_manager.dart';
@@ -31,6 +32,9 @@ class _HomeParentPageState extends State<HomeParentPage> {
       stateManagement: true, // Default is true.
       hideNavigationBarWhenKeyboardShows:
           true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+
+      hideNavigationBar:
+          DIManager.findDep<SharedPrefs>().getToken() != null ? true : false,
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
       itemAnimationProperties: const ItemAnimationProperties(
