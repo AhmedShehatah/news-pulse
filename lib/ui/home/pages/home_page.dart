@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: DIManager.findCC().primaryColor,
       body: BlocBuilder<NewsCubit, NewsState>(
         bloc: DIManager.findDep<NewsCubit>(),
         builder: (context, state) {
@@ -32,8 +33,11 @@ class _HomePageState extends State<HomePage> {
           } else if (newsState is BaseSuccessState) {
             var newsList = newsState.data as List<NewsModel>;
             if (newsList.isEmpty) {
-              return const Center(
-                child: Text("New Current News"),
+              return Center(
+                child: Text(
+                  "New Current News",
+                  style: TextStyle(color: DIManager.findCC().white),
+                ),
               );
             }
             return ListView.separated(

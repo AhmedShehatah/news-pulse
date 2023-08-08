@@ -11,12 +11,7 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
   Future<Result<List<NewsModel>>> getAllNews({bool isPublisher = false}) async {
     return await RemoteDataSource.request<List<NewsModel>>(
       converterList: (list) {
-        try {
-          Logger().d(list.runtimeType);
-          return list!.map((model) => NewsModel.fromJson(model)).toList();
-        } catch (e) {
-          return [];
-        }
+        return list!.map((model) => NewsModel.fromJson(model)).toList();
       },
       method: HttpMethod.GET,
       url: AppEndpoints.news,
