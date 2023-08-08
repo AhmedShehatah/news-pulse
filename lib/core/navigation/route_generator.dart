@@ -4,6 +4,7 @@ import 'package:news_pulse/ui/contact_us/pages/contact_us.dart';
 import 'package:news_pulse/ui/home/pages/home_page.dart';
 import 'package:news_pulse/ui/sigin/pages/signin_page.dart';
 
+import '../../ui/home/pages/home_parent_page.dart';
 import '../../ui/sigin/pages/signup_page.dart';
 
 class RouteGenerator {
@@ -41,11 +42,13 @@ class RouteGenerator {
       case HomePage.routeName:
         return const HomePage();
       case ContactUs.routeName:
-        return ContactUs();
+        return const ContactUs();
       case SignInPage.routName:
         return const SignInPage();
       case SignUpPage.routName:
         return const SignUpPage();
+      case HomeParentPage.routeName:
+        return const HomeParentPage();
       default:
         settings = RouteSettings(
             arguments: settings.arguments, name: DefaultRoute.routeName);
