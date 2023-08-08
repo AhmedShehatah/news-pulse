@@ -17,6 +17,7 @@ class ContactUsCubit extends Cubit<ContactUsState> {
 
     _repo.contactUs(model).then((response) {
       if (response.hasDataOnly) {
+        CustomSnackbar.showSnackbar('Sent Seccussfully');
         emit(state.copyWith(getContactUs: BaseSuccessState(response.data)));
       } else {
         CustomSnackbar.showErrorSnackbar(response.error!);
