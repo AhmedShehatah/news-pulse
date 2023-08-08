@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
-import 'package:news_pulse/ui/home/pages/home_parent_page.dart';
+import 'package:news_pulse/ui/splash_screen/pages/splash_screen.dart';
 
 //import 'package:news_pulse/ui/contact_us/pages/contact_us.dart';
 
@@ -70,7 +70,7 @@ class _AppState extends State<App> {
                           secondary: DIManager.findDep<AppColorsController>()
                               .primaryColor)),
                   title: AppConsts.appName,
-                  initialRoute: HomeParentPage.routeName,
+                  initialRoute: SplashScreen.routeName,
                 );
               },
             );

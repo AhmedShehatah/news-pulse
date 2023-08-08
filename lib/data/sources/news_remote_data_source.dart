@@ -1,4 +1,3 @@
-import 'package:logger/logger.dart';
 import 'package:news_pulse/core/data_source/base_remote_data_source.dart';
 import 'package:news_pulse/core/enums/http_methods.dart';
 import 'package:news_pulse/data/models/news_model.dart';

@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_pulse/core/di/di_manager.dart';
 import 'package:news_pulse/core/navigation/app_navigator.dart';
 import 'package:news_pulse/core/shared_prefs/shared_prefs.dart';
