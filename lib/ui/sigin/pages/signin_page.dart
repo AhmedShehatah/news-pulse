@@ -29,9 +29,9 @@ class _SignInPageState extends State<SignInPage> {
   SignInModel signInModel = SignInModel();
 
   void submit() {
-    signInModel.email = emailController.text;
-    signInModel.password = passwordController.text;
     if (_formKey.currentState?.validate() ?? false) {
+      signInModel.email = emailController.text;
+      signInModel.password = passwordController.text;
       DIManager.findDep<AuthCubit>().signIn(signInModel);
     }
   }
