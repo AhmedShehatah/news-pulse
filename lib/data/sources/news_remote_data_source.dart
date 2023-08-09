@@ -1,4 +1,3 @@
-import 'package:logger/logger.dart';
 import 'package:news_pulse/core/data_source/base_remote_data_source.dart';
 import 'package:news_pulse/core/enums/http_methods.dart';
 import 'package:news_pulse/data/models/news_model.dart';
@@ -11,12 +10,7 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
   Future<Result<List<NewsModel>>> getAllNews({bool isPublisher = false}) async {
     return await RemoteDataSource.request<List<NewsModel>>(
       converterList: (list) {
-        try {
-          Logger().d(list.runtimeType);
-          return list!.map((model) => NewsModel.fromJson(model)).toList();
-        } catch (e) {
-          return [];
-        }
+        return list!.map((model) => NewsModel.fromJson(model)).toList();
       },
       method: HttpMethod.GET,
       url: AppEndpoints.news,
