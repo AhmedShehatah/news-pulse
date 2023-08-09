@@ -8,6 +8,9 @@ import 'package:news_pulse/core/validators/base_validator.dart';
 
 class TextFieldWidget extends StatelessWidget {
   const TextFieldWidget({
+    this.margin,
+    this.fillColor,
+    this.isLabeled = true,
     this.isPassword = false,
     this.fieldIcon,
     required this.textController,
@@ -19,7 +22,9 @@ class TextFieldWidget extends StatelessWidget {
     this.minLine = 1,
     super.key,
   });
+  final Color? fillColor;
   final bool isPassword;
+  final bool isLabeled;
   final Icon? fieldIcon;
   final String label;
   final String hint;
@@ -28,27 +33,27 @@ class TextFieldWidget extends StatelessWidget {
   final List<BaseValidator?> validators;
   final int maxLine;
   final int minLine;
+  final EdgeInsets? margin;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: Dimens.cardInternalPadding,
+      margin: margin ?? Dimens.cardInternalPadding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            label,
-            style: TextStyle(
-                fontSize: AppFontSize.fontSize_16,
-                color: DIManager.findCC().lightgrey),
-          ),
-          const VerticalPadding(2.5),
+          if (isLabeled)
+            Text(
+              label,
+              style: TextStyle(
+                  fontSize: AppFontSize.fontSize_16,
+                  color: DIManager.findCC().lightgrey),
+            ),
+          if (isLabeled) const VerticalPadding(2.5),
           TextFormField(
             minLines: minLine,
             maxLines: maxLine,
             textInputAction: TextInputAction.next,
-            //maxLines: !isPassword ? 20 : 1,
-            //expands: true,
             controller: textController,
             validator: (value) {
               return BaseValidator.validateValue(
@@ -62,23 +67,19 @@ class TextFieldWidget extends StatelessWidget {
             enableSuggestions: false,
             autocorrect: false,
             decoration: InputDecoration(
-              // errorBorder: InputBorder.none,
+              alignLabelWithHint: true,
               errorStyle: TextStyle(
-                  fontSize: AppFontSize.fontSize_12,
-                  color: DIManager.findCC().white),
+                fontSize: AppFontSize.fontSize_12,
+                color: DIManager.findCC().white,
+              ),
               floatingLabelBehavior: FloatingLabelBehavior.never,
               prefixIcon: fieldIcon,
               filled: true,
-              // constraints: BoxConstraints(
-              //     // minHeight: ScreenHelper.fromHeight(heigh),
-              //     // maxHeight: ScreenHelper.fromHeight(heigh + 3),
-              //     ),
               hintText: hint,
               labelText: label,
               contentPadding: Dimens.textFormFieldPadding,
-              fillColor: DIManager.findCC().white,
+              fillColor: fillColor ?? DIManager.findCC().white,
               border: OutlineInputBorder(
-                //borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(Dimens.bigBorderRadius),
               ),
             ),
