@@ -13,6 +13,7 @@ class Dimens {
       EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w);
   static EdgeInsets textPadding =
       EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w);
+  static EdgeInsets smallVerticalPadding = EdgeInsets.symmetric(vertical: 7.w);
 
   static double defaultBorderWidth = ScreenHelper.fromWidth55(0.35);
 

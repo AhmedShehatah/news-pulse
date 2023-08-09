@@ -1,15 +1,18 @@
 import 'package:get_it/get_it.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:news_pulse/blocs/add/add_news_cubit.dart';
 import 'package:news_pulse/blocs/info/info_cubit.dart';
 import 'package:news_pulse/blocs/news/news_bloc.dart';
 import 'package:news_pulse/core/di/modules/netwrok_module.dart';
 import 'package:news_pulse/core/navigation/app_navigator.dart';
+import 'package:news_pulse/data/sources/add_news_remote_data_source.dart';
 
 import 'package:news_pulse/data/sources/auth_remote_data_source.dart';
 
 import 'package:news_pulse/data/sources/info_remote_data_source.dart';
 
 import 'package:news_pulse/data/sources/news_remote_data_source.dart';
+import 'package:news_pulse/repos/add_news_repo.dart';
 import 'package:news_pulse/repos/info_repo.dart';
 import 'package:news_pulse/repos/news_repo.dart';
 
@@ -52,6 +55,8 @@ class DIManager {
 
     _injectDep<InfoRemoteDataSource>(InfoRemoteDataSourceImpl());
 
+    _injectDep<AddNewsRemoteDataSource>(AddNewsRemoteDataSourceImp());
+
     /// -------------------------- Inject Repos Here  -------------------------
     /// EX
     ///  _injectDep<RepoInterface>(RepoImpl(findDep()));
@@ -60,6 +65,7 @@ class DIManager {
     _injectDep<AuthRepo>(AuthRepoImp(findDep<AuthRemoteDataSource>()));
 
     _injectDep<InfoRepo>(InfoRepoImpl(findDep<InfoRemoteDataSource>()));
+    _injectDep<AddNewsRepo>(AddNewsRepoImp(findDep<AddNewsRemoteDataSource>()));
 
     /// --------------------------- Inject Cubit Here -----------------------------------
     /// EX
@@ -69,6 +75,7 @@ class DIManager {
     _injectDep(AuthCubit(findDep<AuthRepo>()));
 
     _injectDep(ContactUsCubit(findDep<InfoRepo>()));
+    _injectDep(AddNewsCubit(findDep<AddNewsRepo>()));
   }
 
   /// this function is responsable for
