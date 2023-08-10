@@ -10,8 +10,14 @@ class NewsRepoImpl implements NewsRepo {
   Future<Result<List<NewsModel>>> getAllNews({bool isPublisher = false}) async {
     return await _newsRemoteDataSource.getAllNews(isPublisher: isPublisher);
   }
+
+  @override
+  Future<Result<NewsModel>> showNews({required String id}) async {
+    return await _newsRemoteDataSource.showNews(id: id);
+  }
 }
 
 abstract class NewsRepo {
   Future<Result<List<NewsModel>>> getAllNews({bool isPublisher = false});
+  Future<Result<NewsModel>> showNews({required String id});
 }
