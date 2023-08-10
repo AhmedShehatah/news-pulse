@@ -29,6 +29,8 @@ class Dimens {
   static double bigIconSize = 40.w;
   static final EdgeInsets itemHorizontalPadding_4 =
       EdgeInsets.symmetric(horizontal: 4.w);
+  static final EdgeInsets itemHorizontalPadding_6 =
+      EdgeInsets.symmetric(horizontal: 6.w);
   static final EdgeInsets itemVerticalPadding_4 =
       EdgeInsets.symmetric(vertical: 4.h);
   static final sheetHeaderPadding =
