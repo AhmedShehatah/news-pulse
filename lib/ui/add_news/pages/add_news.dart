@@ -12,9 +12,10 @@ import 'package:news_pulse/core/utils/attachments/attachments_utils.dart';
 import 'package:news_pulse/core/utils/screen_utlis/device_utils.dart';
 import 'package:news_pulse/core/utils/ui_utlis/vertical_padding.dart';
 import 'package:news_pulse/core/validators/required_validator.dart';
-import 'package:news_pulse/data/models/add_news_model.dart';
 import 'package:news_pulse/ui/global_widgets/default_button.dart';
 import 'package:news_pulse/ui/global_widgets/text_field_widget.dart';
+
+import '../../../data/models/news_model.dart';
 
 class AddNewsPage extends StatefulWidget {
   const AddNewsPage({super.key});
@@ -27,7 +28,7 @@ class AddNewsPage extends StatefulWidget {
 class _AddNewsPageState extends State<AddNewsPage> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentTextController = TextEditingController();
-  AddNewsModel newsModel = AddNewsModel();
+  NewsModel newsModel = NewsModel();
   final _key = GlobalKey<FormState>();
   final _fieldColors = DIManager.findCC().fieldsFillColor;
   final margin = Dimens.smallVerticalPadding;

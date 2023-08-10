@@ -4,7 +4,6 @@ import 'package:news_pulse/data/models/news_model.dart';
 import 'package:news_pulse/data/sources/news_remote_data_source.dart';
 
 import '../core/results/result.dart';
-import '../data/models/add_news_model.dart';
 
 class NewsRepoImpl implements NewsRepo {
   final NewsRemoteDataSource _newsRemoteDataSource;
@@ -20,7 +19,7 @@ class NewsRepoImpl implements NewsRepo {
   }
 
   @override
-  Future<Result<NewsModel>> addNews(AddNewsModel model) async {
+  Future<Result<NewsModel>> addNews(NewsModel model) async {
     return await _newsRemoteDataSource.addNews(model);
   }
 }
@@ -28,5 +27,5 @@ class NewsRepoImpl implements NewsRepo {
 abstract class NewsRepo {
   Future<Result<List<NewsModel>>> getAllNews({bool isPublisher = false});
   Future<Result<String>> uploadImage(File image);
-  Future<Result<NewsModel>> addNews(AddNewsModel model);
+  Future<Result<NewsModel>> addNews(NewsModel model);
 }

@@ -8,7 +8,6 @@ import 'package:news_pulse/data/models/news_model.dart';
 import 'package:news_pulse/data/remote/endpoints.dart';
 
 import '../../core/results/result.dart';
-import '../models/add_news_model.dart';
 
 class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
   @override
@@ -29,14 +28,14 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
   }
 
   @override
-  Future<Result<NewsModel>> addNews(AddNewsModel addNewsModel) async {
+  Future<Result<NewsModel>> addNews(NewsModel newsModel) async {
     return await RemoteDataSource.request<NewsModel>(
       converter: (model) => NewsModel.fromJson(model),
       reqiureToken: true,
       dataOnly: true,
       method: HttpMethod.POST,
       url: AppEndpoints.news,
-      data: addNewsModel.toJson(),
+      data: newsModel.toJson(),
     );
   }
 
@@ -58,6 +57,6 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
 
 abstract class NewsRemoteDataSource {
   Future<Result<List<NewsModel>>> getAllNews({bool isPublisher = false});
-  Future<Result<NewsModel>> addNews(AddNewsModel addNewsModel);
+  Future<Result<NewsModel>> addNews(NewsModel newsModel);
   Future<Result<String>> uploadImage(File image);
 }
