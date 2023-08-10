@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_pulse/core/constants/app_style.dart';
 import 'package:news_pulse/core/shared_prefs/shared_prefs.dart';
-import 'package:news_pulse/core/utils/string_utils/string_utils.dart';
 import 'package:news_pulse/core/utils/ui_utlis/horizontal_padding.dart';
 import '../../../core/constants/dimens.dart';
 import '../../../core/di/di_manager.dart';
