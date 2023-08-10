@@ -43,7 +43,6 @@ class _ContactUsState extends State<ContactUs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       backgroundColor: DIManager.findCC().primaryColor,
       body: BlocConsumer<ContactUsCubit, ContactUsState>(
         bloc: DIManager.findDep<ContactUsCubit>(),

@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
+import 'package:news_pulse/core/navigation/navigation_observer.dart';
+import 'package:news_pulse/ui/root/pages/root_page.dart';
 import 'package:news_pulse/ui/splash_screen/pages/splash_screen.dart';
 
 //import 'package:news_pulse/ui/contact_us/pages/contact_us.dart';
@@ -13,7 +15,6 @@ import 'package:news_pulse/ui/splash_screen/pages/splash_screen.dart';
 
 import 'blocs/app/application_bloc.dart';
 import 'blocs/app/application_state.dart';
-import 'core/constants/app_colors.dart';
 import 'core/constants/app_consts.dart';
 import 'core/di/di_manager.dart';
 import 'core/navigation/route_generator.dart';
@@ -51,22 +52,19 @@ class _AppState extends State<App> {
                   debugShowCheckedModeBanner: false,
                   enableLog: false,
                   onGenerateRoute: RouteGenerator.generateRoutes,
+                  navigatorObservers: [AppNavigationObserver()],
                   builder: ((context, widget) {
                     ScreenHelper(context);
-                    return Container(
-                      child: widget,
-                    );
+                    return RootPage(shownWidgetOnScreen: widget);
                   }),
                   theme: ThemeData(
-                      // Making Roboto Regular the default font for Project
-                      fontFamily: 'Cairo',
-                      primaryColor:
-                          DIManager.findDep<AppColorsController>().primaryColor,
-                      // accentColor:
-                      //     DIManager.findDep<AppColorsController>().primaryColor,
-                      colorScheme: ColorScheme.fromSwatch().copyWith(
-                          secondary: DIManager.findDep<AppColorsController>()
-                              .primaryColor)),
+                    fontFamily: 'Cairo',
+                    primaryColor: DIManager.findCC().primaryColor,
+                    // accentColor:
+                    //     DIManager.findDep<AppColorsController>().primaryColor,
+                    colorScheme: ColorScheme.fromSwatch()
+                        .copyWith(secondary: DIManager.findCC().primaryColor),
+                  ),
                   title: AppConsts.appName,
                   initialRoute: SplashScreen.routeName,
                 );
@@ -81,7 +79,6 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
-    DIManager.findAC().init();
   }
 
   @override

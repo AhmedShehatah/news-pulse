@@ -45,4 +45,5 @@ class AppColorsController {
   Color lightgrey = const Color(0xFFA9A6A6);
   Color activeBlue = const Color(0xFF007AFF);
   Color systemGrey = const Color(0xFF8E8E93);
+  Color publisherAvatarColor = const Color(0xFFA9A6A6);
 }

@@ -1,42 +1,22 @@
-import '../../core/states/base_init_state.dart';
-import '../../core/states/base_states.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_pulse/core/di/di_manager.dart';
+import 'package:news_pulse/core/shared_prefs/shared_prefs.dart';
 
-class ApplicationState {
-  BaseState splashState;
+import 'application_state.dart';
 
-  bool isHomeDrawerOpened;
-  bool isSideDrawerShowed;
-  Function? setHandleOfDrawer;
-  bool isBottomBarShowed;
+class ApplicationCubit extends Cubit<ApplicationState> {
+  ApplicationCubit() : super(ApplicationState.initialState());
 
-  ApplicationState({
-    required this.splashState,
-    this.setHandleOfDrawer,
-    required this.isSideDrawerShowed,
-    required this.isHomeDrawerOpened,
-    required this.isBottomBarShowed,
-    // required this.userProfile,
-  });
+  void updateUserStatus() {
+    bool isPublisher = DIManager.findDep<SharedPrefs>().getToken() != null;
+    emit(state.copyWith(isPublisher: isPublisher));
+  }
 
-  factory ApplicationState.initialState() => ApplicationState(
-        splashState: BaseInitState(),
-        isHomeDrawerOpened: false,
-        isBottomBarShowed: true,
-        isSideDrawerShowed: false,
-      );
+  void updateAppBarStatus({required bool isMainAppBar}) {
+    emit(state.copyWith(isMainAppBar: isMainAppBar));
+  }
 
-  ApplicationState copyWith(
-      {BaseState? splashState,
-      Function? setHandleOfDrawer,
-      bool? isHomeDrawerOpened,
-      bool? isSideDrawerShowed,
-      bool? isBottomBarShowed}) {
-    return ApplicationState(
-      splashState: splashState ?? this.splashState,
-      setHandleOfDrawer: setHandleOfDrawer ?? this.setHandleOfDrawer,
-      isSideDrawerShowed: isSideDrawerShowed ?? this.isSideDrawerShowed,
-      isHomeDrawerOpened: isHomeDrawerOpened ?? this.isHomeDrawerOpened,
-      isBottomBarShowed: isBottomBarShowed ?? this.isBottomBarShowed,
-    );
+  void updateSplashAppBar({required bool isSplashScreen}) {
+    emit(state.copyWith(isSplashScreen: isSplashScreen));
   }
 }
