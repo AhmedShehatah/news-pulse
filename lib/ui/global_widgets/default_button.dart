@@ -8,20 +8,22 @@ import 'loading_widgets.dart';
 
 class DefaultButton extends StatelessWidget {
   const DefaultButton(
-      {required this.buttonText,
+      {this.margin,
+      required this.buttonText,
       required this.onPressed,
       required this.isLoading,
       super.key});
   final String buttonText;
   final Function() onPressed;
   final bool isLoading;
+  final EdgeInsets? margin;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: ScreenHelper.fromHeight(6),
       width: ScreenHelper.width,
-      margin: Dimens.cardInternalPadding,
+      margin: margin ?? Dimens.cardInternalPadding,
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
           shape: RoundedRectangleBorder(

@@ -1,5 +1,6 @@
 class AppEndpoints {
-  static const baseUrl = "https://studentsystem.onrender.com/api/v1";
+  static const baseUrl = "https://studentsystem.onrender.com";
+  static const version = "/api/v1";
 
   // receiveTimeout
   static const Duration receiveTimeout = Duration(milliseconds: 15000);
@@ -13,8 +14,9 @@ class AppEndpoints {
   // static const String login = "/login";
   // static const String publisher = "/publisher";
   // static const String publisherNews = "$publisher/news";
-  static const String news = "/news";
-  static var contactUs = "/contact";
-  static const String signIn = "/auth/login";
-  static const String signUp = "/auth/signup";
+  static const String news = "$version/news";
+  static var contactUs = "$version/contact";
+  static const String signIn = "$version/auth/login";
+  static const String signUp = "$version/auth/signup";
+  static const String upload = "/uploads";
 }

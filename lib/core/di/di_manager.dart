@@ -4,6 +4,7 @@ import 'package:news_pulse/blocs/info/info_cubit.dart';
 import 'package:news_pulse/blocs/news/news_bloc.dart';
 import 'package:news_pulse/core/di/modules/netwrok_module.dart';
 import 'package:news_pulse/core/navigation/app_navigator.dart';
+import 'package:news_pulse/core/utils/attachments/attachments_utils.dart';
 
 import 'package:news_pulse/data/sources/auth_remote_data_source.dart';
 
@@ -42,6 +43,8 @@ class DIManager {
 
     // inject sharedPrefs here
     await _setupSharedPreference();
+
+    _injectDep(AttachemntUtils());
 
     ////  ----------------------  Inject Remote data sources here ------------------------
     /// EX
