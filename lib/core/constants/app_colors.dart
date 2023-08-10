@@ -45,4 +45,6 @@ class AppColorsController {
   Color jeansBlueColor = const Color(0xffecf1f9);
   Color invalidGreyColor = const Color(0xfff2f4f9);
   Color lightgrey = const Color(0xFFA9A6A6);
+  Color activeBlue = const Color(0xFF007AFF);
+  Color systemGrey = const Color(0xFF8E8E93);
 }
