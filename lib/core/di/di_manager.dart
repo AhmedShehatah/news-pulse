@@ -14,7 +14,7 @@ import 'package:news_pulse/data/sources/news_remote_data_source.dart';
 import 'package:news_pulse/repos/info_repo.dart';
 import 'package:news_pulse/repos/news_repo.dart';
 
-import '../../blocs/app/application_state.dart';
+import '../../blocs/app/application_bloc.dart';
 import '../../blocs/auth/auth_cubit.dart';
 import '../../repos/auth_repo.dart';
 import '../constants/app_colors.dart';
