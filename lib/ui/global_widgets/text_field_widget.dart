@@ -8,6 +8,7 @@ import 'package:news_pulse/core/validators/base_validator.dart';
 
 class TextFieldWidget extends StatelessWidget {
   const TextFieldWidget({
+    this.warningColor,
     this.margin,
     this.fillColor,
     this.isLabeled = true,
@@ -16,19 +17,18 @@ class TextFieldWidget extends StatelessWidget {
     required this.textController,
     required this.label,
     required this.hint,
-    //  this.heigh = 9,
     required this.validators,
     this.maxLine = 1,
     this.minLine = 1,
     super.key,
   });
+  final Color? warningColor;
   final Color? fillColor;
   final bool isPassword;
   final bool isLabeled;
   final Icon? fieldIcon;
   final String label;
   final String hint;
-//  final double heigh;
   final TextEditingController textController;
   final List<BaseValidator?> validators;
   final int maxLine;
@@ -70,7 +70,7 @@ class TextFieldWidget extends StatelessWidget {
               alignLabelWithHint: true,
               errorStyle: TextStyle(
                 fontSize: AppFontSize.fontSize_12,
-                color: DIManager.findCC().white,
+                color: warningColor ?? DIManager.findCC().white,
               ),
               floatingLabelBehavior: FloatingLabelBehavior.never,
               prefixIcon: fieldIcon,
