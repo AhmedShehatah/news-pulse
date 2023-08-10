@@ -8,9 +8,8 @@ import 'package:news_pulse/core/states/base_fail_state.dart';
 import 'package:news_pulse/core/states/base_success_state.dart';
 import 'package:news_pulse/core/states/base_wait_state.dart';
 import 'package:news_pulse/core/utils/ui_utlis/custom_snack_bar.dart';
+import 'package:news_pulse/data/models/news_model.dart';
 import 'package:news_pulse/repos/news_repo.dart';
-
-import '../../data/models/news_model.dart';
 import '../../ui/home/pages/home_page.dart';
 import 'news_state.dart';
 
@@ -28,6 +27,19 @@ class NewsCubit extends Cubit<NewsState> {
         CustomSnackbar.showErrorSnackbar(response.error!);
         Logger().e(response.error!.message!);
         emit(state.copyWith(getAllNewsState: BaseFailState(response.error)));
+      }
+    });
+  }
+
+  void showNews(String id) {
+    emit(state.copyWith(showNewsState: const BaseLoadingState()));
+    _repo.showNews(id: id).then((response) {
+      if (response.hasDataOnly) {
+        emit(state.copyWith(
+            showNewsState: BaseSuccessState<NewsModel>(response.data)));
+      } else {
+        CustomSnackbar.showErrorSnackbar(response.error!);
+        emit(state.copyWith(showNewsState: BaseFailState(response.error)));
       }
     });
   }

@@ -8,6 +8,7 @@ import 'package:news_pulse/data/models/news_model.dart';
 import 'package:news_pulse/ui/home/widgets/news_item_model.dart';
 
 import '../../../blocs/news/news_state.dart';
+import '../../show_news/pages/show_news_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -43,7 +44,13 @@ class _HomePageState extends State<HomePage> {
             return ListView.separated(
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                return NewsItemModel(model: newsList[index]);
+                return InkWell(
+                    onTap: () {
+                      DIManager.findNavigator().pushNamed(
+                          ShowNewsPage.routeName,
+                          arguments: newsList[index].id!);
+                    },
+                    child: NewsItemModel(model: newsList[index]));
               },
               itemCount: newsList.length,
               separatorBuilder: ((context, index) => const Divider()),

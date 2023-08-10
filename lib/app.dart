@@ -8,16 +8,7 @@ import 'package:get/route_manager.dart';
 import 'package:news_pulse/core/navigation/navigation_observer.dart';
 import 'package:news_pulse/ui/root/pages/root_page.dart';
 
-
-import 'package:news_pulse/ui/add_news/pages/add_news.dart';
-import 'package:news_pulse/ui/contact_us/pages/contact_us.dart';
-
-
 import 'package:news_pulse/ui/splash_screen/pages/splash_screen.dart';
-
-import 'package:news_pulse/ui/sigin/pages/signin_page.dart';
-import 'package:news_pulse/ui/sigin/pages/signup_page.dart';
-
 
 import 'blocs/app/application_bloc.dart';
 import 'blocs/app/application_state.dart';
@@ -72,9 +63,7 @@ class _AppState extends State<App> {
                         .copyWith(secondary: DIManager.findCC().primaryColor),
                   ),
                   title: AppConsts.appName,
-
                   initialRoute: SplashScreen.routeName,
-
                 );
               },
             );

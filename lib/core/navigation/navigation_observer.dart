@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:news_pulse/core/di/di_manager.dart';
 import 'package:news_pulse/ui/contact_us/pages/contact_us.dart';
-import 'package:news_pulse/ui/sigin/pages/signin_page.dart';
-import 'package:news_pulse/ui/sigin/pages/signup_page.dart';
+
+import '../../ui/sigin_signup/pages/signin_page.dart';
+import '../../ui/sigin_signup/pages/signup_page.dart';
 
 class AppNavigationObserver extends NavigatorObserver {
   @override

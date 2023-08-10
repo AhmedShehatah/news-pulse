@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:news_pulse/ui/add_news/pages/add_news.dart';
 import 'package:news_pulse/ui/contact_us/pages/contact_us.dart';
 import 'package:news_pulse/ui/home/pages/home_page.dart';
-import 'package:news_pulse/ui/sigin/pages/signin_page.dart';
+import 'package:news_pulse/ui/show_news/pages/show_news_page.dart';
+import 'package:news_pulse/ui/sigin_signup/pages/signin_page.dart';
 import 'package:news_pulse/ui/splash_screen/pages/splash_screen.dart';
 
 import '../../ui/home/pages/home_parent_page.dart';
-import '../../ui/sigin/pages/signup_page.dart';
+import '../../ui/sigin_signup/pages/signup_page.dart';
 
 class RouteGenerator {
   static Route? generateRoutes(RouteSettings settings) {
@@ -55,6 +56,8 @@ class RouteGenerator {
         return const HomeParentPage();
       case SplashScreen.routeName:
         return const SplashScreen();
+      case ShowNewsPage.routeName:
+        return const ShowNewsPage();
 
       default:
         settings = RouteSettings(
