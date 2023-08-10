@@ -74,8 +74,7 @@ class ApiProvider {
       }
 
       if (converterList != null) {
-        // TODO removed ['data'] temp because of backend
-        return Result(data: converterList(response.data['blogs']));
+        return Result(data: converterList(response.data['data']));
       }
       if (dataOnly == true) {
         return Result(data: converter!(response.data['data']));
