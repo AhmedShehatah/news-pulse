@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:news_pulse/ui/add_news/pages/add_news.dart';
 import 'package:news_pulse/ui/contact_us/pages/contact_us.dart';
 import 'package:news_pulse/ui/home/pages/home_page.dart';
 import 'package:news_pulse/ui/show_news/pages/show_news_page.dart';
@@ -49,12 +50,16 @@ class RouteGenerator {
         return const SignInPage();
       case SignUpPage.routName:
         return const SignUpPage();
+      case AddNewsPage.routName:
+        return const AddNewsPage();
       case HomeParentPage.routeName:
         return const HomeParentPage();
       case SplashScreen.routeName:
         return const SplashScreen();
+
       case ShowNewsPage.routeName:
-        return ShowNewsPage();
+        return const ShowNewsPage();
+
       default:
         settings = RouteSettings(
             arguments: settings.arguments, name: DefaultRoute.routeName);

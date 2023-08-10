@@ -19,8 +19,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 1),
-        () => DIManager.findNavigator().offAll(HomeParentPage.routeName));
+    Timer(const Duration(seconds: 3), () {
+      DIManager.findAC().updateSplashAppBar(isSplashScreen: false);
+      DIManager.findNavigator().offAll(HomeParentPage.routeName);
+    });
   }
 
   @override

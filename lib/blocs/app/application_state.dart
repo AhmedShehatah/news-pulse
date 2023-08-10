@@ -1,65 +1,33 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'application_bloc.dart';
+import '../../core/states/base_states.dart';
 
-class ApplicationCubit extends Cubit<ApplicationState> {
-  ApplicationCubit() : super(ApplicationState.initialState());
+class ApplicationState {
+  bool isPublisher;
+  bool isMainAppBar;
+  bool isSplashScreen;
 
-  Future<void> init() async {
-    // var authCubit = DIManager.findDep<AuthCubit>();
-    // authCubit.init();
+  ApplicationState({
+    required this.isMainAppBar,
+    required this.isPublisher,
+    required this.isSplashScreen,
+  });
 
-    // var token = DIManager.findDep<SharedPrefs>().getToken();
-    // if (token != null) {
-    //   if (Jwt.isExpired(token)) {
-    //     CustomSnackbar.showSnackbar('session Expired please sign in again');
-    //     DIManager.findNavigator().offAll(SignInPage.routeName);
-    //   } else {
-    //     int userType = Jwt.parseJwt(token)['type'];
+  factory ApplicationState.initialState() => ApplicationState(
+        isMainAppBar: true,
+        isPublisher: false,
+        isSplashScreen: true,
+      );
 
-    //     switch (LoginModeEnum.values[userType - 1]) {
-    //       case LoginModeEnum.none:
-    //         break;
-    //       case LoginModeEnum.client:
-    //         DIManager.findNavigator().offAll(UserPageParent.routeName);
-    //         break;
-    //       case LoginModeEnum.notary:
-    //         DIManager.findNavigator().offAll(NotaryPageParent.routeName);
-    //         break;
-    //     }
-    //     emit(state.copyWith(splashState: const BaseSuccessState()));
-    //   }
-    // } else {
-    //   DIManager.findNavigator().offAll(SignInPage.routeName);
-    //   emit(state.copyWith(splashState: const BaseSuccessState()));
-    // }
-  }
-
-  void onHomeDrawer(bool isOpened) {
-    emit(state.copyWith(isHomeDrawerOpened: isOpened));
-  }
-
-  Future isBottomBarShowed(bool isOpened) async {
-    emit(state.copyWith(isBottomBarShowed: isOpened));
-    return null;
-  }
-
-  void setSideDrawer(bool isShowed) {
-    emit(state.copyWith(isSideDrawerShowed: isShowed));
-  }
-
-  Future onOverallDrawerChanged(Function setHandleOfDrawer) async {
-    emit(
-      state.copyWith(setHandleOfDrawer: setHandleOfDrawer),
+  ApplicationState copyWith({
+    BaseState? publisherState,
+    BaseState? mainAppBarState,
+    bool? isPublisher,
+    bool? isMainAppBar,
+    bool? isSplashScreen,
+  }) {
+    return ApplicationState(
+      isMainAppBar: isMainAppBar ?? this.isMainAppBar,
+      isPublisher: isPublisher ?? this.isPublisher,
+      isSplashScreen: isSplashScreen ?? this.isSplashScreen,
     );
-    return null;
-  }
-
-  Function? getOverallDrawerHandler() {
-    return state.setHandleOfDrawer;
-  }
-
-  @override
-  void emit(ApplicationState state) {
-    super.emit(state);
   }
 }
