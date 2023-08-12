@@ -23,4 +23,9 @@ class SharedPrefs {
       ReadWriteValue("appEmail${AppConsts.appName}", null);
   String? getEmail() => _appEmail.val;
   void setEmail(String email) => _appEmail.val = email;
+
+  // logout
+  void logout() {
+    _appToken.val = _appEmail.val = _appId.val = _appUserName.val = null;
+  }
 }

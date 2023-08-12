@@ -10,6 +10,7 @@ import 'package:news_pulse/data/models/sign_in_model.dart';
 
 import 'package:news_pulse/repos/auth_repo.dart';
 import 'package:news_pulse/ui/home/pages/home_page.dart';
+import 'package:news_pulse/ui/home/pages/home_parent_page.dart';
 
 import '../../core/states/base_success_state.dart';
 import '../../core/utils/ui_utlis/custom_snack_bar.dart';
@@ -33,7 +34,7 @@ class AuthCubit extends Cubit<AuthState> {
             .setUserName(publisher!.data!.userName!);
         DIManager.findDep<SharedPrefs>().setEmail(publisher!.data!.email!);
         emit(state.copyWith(signIn: const BaseSuccessState()));
-        DIManager.findDep<AppNavigator>().offAll(HomePage.routeName);
+        DIManager.findDep<AppNavigator>().offAll(HomeParentPage.routeName);
       } else {
         emit(state.copyWith(signIn: BaseFailState(response.error!)));
         CustomSnackbar.showErrorSnackbar(response.error!);
@@ -52,7 +53,7 @@ class AuthCubit extends Cubit<AuthState> {
             .setUserName(publisher!.data!.userName!);
         DIManager.findDep<SharedPrefs>().setEmail(publisher!.data!.email!);
         emit(state.copyWith(signIn: const BaseSuccessState()));
-        DIManager.findNavigator().offAll(HomePage.routeName);
+        DIManager.findDep<AppNavigator>().offAll(HomeParentPage.routeName);
       } else {
         CustomSnackbar.showErrorSnackbar(response.error!);
         emit(state.copyWith(signUp: BaseFailState(response.error)));
