@@ -6,6 +6,7 @@ import 'package:news_pulse/ui/contact_us/pages/contact_us.dart';
 import 'package:news_pulse/ui/root/widgets/user_appbar.dart';
 
 import '../../../blocs/app/application_state.dart';
+import '../widgets/drawer.dart';
 
 class RootPage extends StatefulWidget {
   const RootPage({super.key, required this.shownWidgetOnScreen});
@@ -25,12 +26,11 @@ class _RootPageState extends State<RootPage> {
       builder: (context, state) {
         return Scaffold(
           key: _scaffoldKey,
-          drawer: Drawer(
-            child: ElevatedButton(
-                onPressed: () {
-                  DIManager.findNavigator().pushNamed(ContactUs.routeName);
-                },
-                child: const Text('Contact Us')),
+          drawer: CustomDrawer(
+            isPublisher: state.isPublisher,
+            onCloseDrawer: () {
+              _scaffoldKey.currentState!.closeDrawer();
+            },
           ),
           appBar: state.isSplashScreen
               ? null
