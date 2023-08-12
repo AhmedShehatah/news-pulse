@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_pulse/core/utils/screen_utlis/device_utils.dart';
 import 'package:news_pulse/data/models//about_us_model.dart';
 
 import '../../../blocs/info/info_cubit.dart';
@@ -49,7 +50,12 @@ class _AboutUsPageState extends State<AboutUsPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Center(
-                    child: CachedNetworkImage(imageUrl: us.imageUrl!),
+                    child: CachedNetworkImage(
+                      imageUrl: us.imageUrl!,
+                      width: ScreenHelper.width,
+                      fit: BoxFit.fill,
+                      height: ScreenHelper.height * 0.4,
+                    ),
                   ),
                   const VerticalPadding(2),
                   Padding(

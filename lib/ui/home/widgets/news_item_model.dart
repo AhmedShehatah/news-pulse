@@ -30,11 +30,18 @@ class NewsItemModel extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               CachedNetworkImage(
-                imageUrl: model.imageUrl ??
-                    'https://www.ncenet.com/wp-content/uploads/2020/04/No-image-found.jpg',
+                imageUrl: model.imageUrl!.isEmpty
+                    ? 'https://www.ncenet.com/wp-content/uploads/2020/04/No-image-found.jpg'
+                    : model.imageUrl!,
                 width: ScreenHelper.fromWidth(35),
                 height: ScreenHelper.fromHeight(15),
+                errorWidget: (context, url, _) => Image.network(
+                    'https://www.ncenet.com/wp-content/uploads/2020/04/No-image-found.jpg'),
                 fit: BoxFit.fill,
+                progressIndicatorBuilder: (context, url, progress) => Center(
+                    child: CircularProgressIndicator(
+                  color: DIManager.findCC().primaryColor,
+                )),
               ),
               const HorizontalPadding(2),
               Expanded(
