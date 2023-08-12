@@ -27,6 +27,16 @@ class NewsRepoImpl implements NewsRepo {
   Future<Result<NewsModel>> addNews(NewsModel model) async {
     return await _newsRemoteDataSource.addNews(model);
   }
+
+  @override
+  Future<Result<String>> deleteNews(String id) async {
+    return await _newsRemoteDataSource.deleteNews(id);
+  }
+
+  @override
+  Future<Result<NewsModel>> editNews(NewsModel model) async {
+    return await _newsRemoteDataSource.editNews(model);
+  }
 }
 
 abstract class NewsRepo {
@@ -34,4 +44,6 @@ abstract class NewsRepo {
   Future<Result<NewsModel>> showNews({required String id});
   Future<Result<String>> uploadImage(File image);
   Future<Result<NewsModel>> addNews(NewsModel model);
+  Future<Result<String>> deleteNews(String id);
+  Future<Result<NewsModel>> editNews(NewsModel model);
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:news_pulse/ui/add_news/pages/add_news.dart';
 import 'package:news_pulse/ui/contact_us/pages/contact_us.dart';
 import 'package:news_pulse/ui/home/pages/home_page.dart';
+import 'package:news_pulse/ui/publisher_news/publisher_show_news.dart';
 import 'package:news_pulse/ui/show_news/pages/show_news_page.dart';
 import 'package:news_pulse/ui/sigin_signup/pages/signin_page.dart';
 import 'package:news_pulse/ui/splash_screen/pages/splash_screen.dart';
@@ -58,6 +59,8 @@ class RouteGenerator {
         return const SplashScreen();
       case ShowNewsPage.routeName:
         return const ShowNewsPage();
+      case PublisherShowNewsPage.routeName:
+        return const PublisherShowNewsPage();
 
       default:
         settings = RouteSettings(

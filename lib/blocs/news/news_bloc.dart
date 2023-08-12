@@ -17,8 +17,42 @@ class NewsCubit extends Cubit<NewsState> {
   NewsCubit(this._repo) : super(NewsState.initState());
   final NewsRepo _repo;
 
+  void editNews(NewsModel model) {
+    emit(state.copyWith(updateNews: const BaseLoadingState()));
+    if (_url != null) {
+      model.imageUrl = _url;
+    }
+    _repo.editNews(model).then((response) {
+      if (response.hasDataOnly) {
+        Logger().d(response.data);
+        CustomSnackbar.showSnackbar("DONE");
+        emit(state.copyWith(updateNews: const BaseSuccessState()));
+        DIManager.findNavigator().offAll(HomePage.routeName);
+      } else {
+        CustomSnackbar.showErrorSnackbar(response.error!);
+        emit(state.copyWith(updateNews: BaseFailState(response.error!)));
+      }
+    });
+  }
+
+  void deleteNews(String id) {
+    emit(state.copyWith(deleteNews: const BaseLoadingState()));
+    _repo.deleteNews(id).then((response) {
+      if (response.hasDataOnly) {
+        emit(state.copyWith(deleteNews: BaseSuccessState(response.data)));
+        CustomSnackbar.showSnackbar(response.data!);
+        DIManager.findNavigator().offAll(HomePage.routeName);
+      } else {
+        emit(state.copyWith(deleteNews: BaseFailState(response.error!)));
+        CustomSnackbar.showErrorSnackbar(response.error!);
+      }
+    });
+  }
+
   void getAllNews() {
     emit(state.copyWith(getAllNewsState: const BaseLoadingState()));
+    Logger().d(DIManager.findDep<SharedPrefs>().getToken());
+
     bool isPublisher = DIManager.findDep<SharedPrefs>().getToken() != null;
     _repo.getAllNews(isPublisher: isPublisher).then((response) {
       if (response.hasDataOnly) {
