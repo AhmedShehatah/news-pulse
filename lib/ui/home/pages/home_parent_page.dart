@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:news_pulse/core/shared_prefs/shared_prefs.dart';
+import 'package:news_pulse/ui/add_news/pages/add_news.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../../core/di/di_manager.dart';
@@ -16,6 +17,33 @@ class HomeParentPage extends StatefulWidget {
 class _HomeParentPageState extends State<HomeParentPage> {
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
+  List<Widget> _buildScreens() {
+    return [const HomePage(), const AddNewsPage()];
+  }
+
+  List<PersistentBottomNavBarItem> _navBarsItems() {
+    return [
+      PersistentBottomNavBarItem(
+        icon: const Icon(CupertinoIcons.home),
+        title: ("Home"),
+        activeColorPrimary: DIManager.findCC().activeBlue,
+        inactiveColorPrimary: DIManager.findCC().systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(CupertinoIcons.add),
+        title: ("Add"),
+        activeColorPrimary: DIManager.findCC().activeBlue,
+        inactiveColorPrimary: DIManager.findCC().systemGrey,
+      ),
+    ];
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    DIManager.findAC().updateUserStatus();
+  }
+
   @override
   Widget build(BuildContext context) {
     return PersistentTabView(
@@ -34,7 +62,7 @@ class _HomeParentPageState extends State<HomeParentPage> {
           true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
 
       hideNavigationBar:
-          DIManager.findDep<SharedPrefs>().getToken() != null ? true : false,
+          DIManager.findDep<SharedPrefs>().getToken() != null ? false : true,
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
       itemAnimationProperties: const ItemAnimationProperties(
@@ -52,25 +80,4 @@ class _HomeParentPageState extends State<HomeParentPage> {
           NavBarStyle.style6, // Choose the nav bar style with this property.
     );
   }
-}
-
-List<Widget> _buildScreens() {
-  return [const HomePage(), Container()];
-}
-
-List<PersistentBottomNavBarItem> _navBarsItems() {
-  return [
-    PersistentBottomNavBarItem(
-      icon: const Icon(CupertinoIcons.home),
-      title: ("Home"),
-      activeColorPrimary: DIManager.findCC().activeBlue,
-      inactiveColorPrimary: DIManager.findCC().systemGrey,
-    ),
-    PersistentBottomNavBarItem(
-      icon: const Icon(CupertinoIcons.add),
-      title: ("Add"),
-      activeColorPrimary: DIManager.findCC().activeBlue,
-      inactiveColorPrimary: DIManager.findCC().systemGrey,
-    ),
-  ];
 }
