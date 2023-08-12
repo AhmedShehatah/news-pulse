@@ -39,7 +39,6 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       backgroundColor: DIManager.findCC().primaryColor,
       body: BlocBuilder<AuthCubit, AuthState>(
           bloc: DIManager.findDep<AuthCubit>(),

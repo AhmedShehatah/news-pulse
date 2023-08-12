@@ -88,7 +88,6 @@ class _AddNewsPageState extends State<AddNewsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       backgroundColor: DIManager.findCC().lightgreyBackground,
       body: Container(
         margin: Dimens.itemHorizontalPadding_6,
