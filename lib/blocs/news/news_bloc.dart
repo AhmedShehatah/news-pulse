@@ -10,6 +10,7 @@ import 'package:news_pulse/core/states/base_wait_state.dart';
 import 'package:news_pulse/core/utils/ui_utlis/custom_snack_bar.dart';
 import 'package:news_pulse/data/models/news_model.dart';
 import 'package:news_pulse/repos/news_repo.dart';
+import 'package:news_pulse/ui/home/pages/home_parent_page.dart';
 import '../../ui/home/pages/home_page.dart';
 import 'news_state.dart';
 
@@ -98,7 +99,7 @@ class NewsCubit extends Cubit<NewsState> {
     _repo.addNews(model).then((response) {
       if (response.hasDataOnly) {
         emit(state.copyWith(createNewsState: const BaseSuccessState()));
-        DIManager.findNavigator().offAll(HomePage.routeName);
+        DIManager.findNavigator().offAll(HomeParentPage.routeName);
       } else {
         emit(state.copyWith(createNewsState: BaseFailState(response.error)));
         CustomSnackbar.showErrorSnackbar(response.error!);

@@ -5,6 +5,7 @@ import 'package:news_pulse/core/di/di_manager.dart';
 import 'package:news_pulse/core/enums/drawer_icons.dart';
 import 'package:news_pulse/core/shared_prefs/shared_prefs.dart';
 import 'package:news_pulse/core/utils/ui_utlis/vertical_padding.dart';
+import 'package:news_pulse/ui/about_us/pages/about_us_page.dart';
 import 'package:news_pulse/ui/contact_us/pages/contact_us.dart';
 import 'package:news_pulse/ui/home/pages/home_parent_page.dart';
 import 'package:news_pulse/ui/sigin_signup/pages/signup_page.dart';
@@ -78,7 +79,7 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             onTap: () {
               onCloseDrawer!();
-              DIManager.findNavigator().pushNamed(ContactUs.routeName);
+              DIManager.findNavigator().pushNamed(AboutUsPage.routeName);
             },
             style: ListTileStyle.drawer,
             leading: drawerIconsList[DrawerIcons.aboutUs],
