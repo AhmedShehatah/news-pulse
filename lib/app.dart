@@ -9,7 +9,7 @@ import 'package:news_pulse/core/navigation/navigation_observer.dart';
 import 'package:news_pulse/ui/about_us/pages/about_us_page.dart';
 import 'package:news_pulse/ui/root/pages/root_page.dart';
 
-//import 'package:news_pulse/ui/splash_screen/pages/splash_screen.dart';
+import 'package:news_pulse/ui/splash_screen/pages/splash_screen.dart';
 
 import 'blocs/app/application_bloc.dart';
 import 'blocs/app/application_state.dart';
