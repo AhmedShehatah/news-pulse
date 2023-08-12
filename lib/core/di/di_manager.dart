@@ -71,7 +71,7 @@ class DIManager {
 
     _injectDep(AuthCubit(findDep<AuthRepo>()));
 
-    _injectDep(ContactUsCubit(findDep<InfoRepo>()));
+    _injectDep(InfoCubit(findDep<InfoRepo>()));
   }
 
   /// this function is responsable for

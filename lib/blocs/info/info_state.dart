@@ -1,21 +1,26 @@
 import 'package:news_pulse/core/states/base_init_state.dart';
 import 'package:news_pulse/core/states/base_states.dart';
 
-class ContactUsState {
+class InfoState {
   BaseState getContactUs;
+  BaseState getAboutUs;
 
-  ContactUsState({
+  InfoState({
     required this.getContactUs,
+    required this.getAboutUs,
   });
 
-  factory ContactUsState.initState() => ContactUsState(
+  factory InfoState.initState() => InfoState(
         getContactUs: BaseInitState(),
+        getAboutUs: BaseInitState(),
       );
 
-  ContactUsState copyWith({
+  InfoState copyWith({
     BaseState? getContactUs,
+    BaseState? getAboutUs,
   }) =>
-      ContactUsState(
+      InfoState(
         getContactUs: getContactUs ?? this.getContactUs,
+        getAboutUs: getAboutUs ?? this.getAboutUs,
       );
 }

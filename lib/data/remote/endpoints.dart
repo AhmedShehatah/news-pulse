@@ -19,4 +19,5 @@ class AppEndpoints {
   static const String signIn = "$version/auth/login";
   static const String signUp = "$version/auth/signup";
   static const String upload = "/uploads";
+  static const String aboutus = "$version/about-us";
 }

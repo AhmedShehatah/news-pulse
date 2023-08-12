@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
 
 import 'package:news_pulse/core/navigation/navigation_observer.dart';
+import 'package:news_pulse/ui/about_us/pages/about_us_page.dart';
 import 'package:news_pulse/ui/root/pages/root_page.dart';
 
 import 'package:news_pulse/ui/splash_screen/pages/splash_screen.dart';

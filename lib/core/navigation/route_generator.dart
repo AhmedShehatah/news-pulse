@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:news_pulse/ui/about_us/pages/about_us_page.dart';
 import 'package:news_pulse/ui/add_news/pages/add_news.dart';
 import 'package:news_pulse/ui/contact_us/pages/contact_us.dart';
 import 'package:news_pulse/ui/home/pages/home_page.dart';
@@ -59,6 +60,8 @@ class RouteGenerator {
         return const SplashScreen();
       case ShowNewsPage.routeName:
         return const ShowNewsPage();
+      case AboutUsPage.routeName:
+        return const AboutUsPage();
       case PublisherShowNewsPage.routeName:
         return const PublisherShowNewsPage();
 

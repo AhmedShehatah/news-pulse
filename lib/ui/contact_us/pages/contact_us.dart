@@ -21,10 +21,10 @@ class ContactUs extends StatefulWidget {
   static const String routeName = "/contact-us-page";
 
   @override
-  State<ContactUs> createState() => _ContactUsState();
+  State<ContactUs> createState() => _InfoState();
 }
 
-class _ContactUsState extends State<ContactUs> {
+class _InfoState extends State<ContactUs> {
   final TextEditingController emailController = TextEditingController();
 
   final TextEditingController reportController = TextEditingController();
@@ -36,7 +36,7 @@ class _ContactUsState extends State<ContactUs> {
     contactUsModel.email = emailController.text;
     contactUsModel.report = reportController.text;
     if (_formKey.currentState?.validate() ?? false) {
-      DIManager.findDep<ContactUsCubit>().contactUs(contactUsModel);
+      DIManager.findDep<InfoCubit>().contactUs(contactUsModel);
     }
   }
 
@@ -44,8 +44,8 @@ class _ContactUsState extends State<ContactUs> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: DIManager.findCC().primaryColor,
-      body: BlocConsumer<ContactUsCubit, ContactUsState>(
-        bloc: DIManager.findDep<ContactUsCubit>(),
+      body: BlocConsumer<InfoCubit, InfoState>(
+        bloc: DIManager.findDep<InfoCubit>(),
         listener: (context, state) {
           if (state.getContactUs is BaseSuccessState) {
             emailController.clear();
@@ -53,8 +53,8 @@ class _ContactUsState extends State<ContactUs> {
           }
         },
         builder: (context, state) {
-          var contactUsState = state.getContactUs;
-          bool isLoading = contactUsState is BaseLoadingState;
+          var InfoState = state.getContactUs;
+          bool isLoading = InfoState is BaseLoadingState;
 
           return SingleChildScrollView(
             child: Form(
