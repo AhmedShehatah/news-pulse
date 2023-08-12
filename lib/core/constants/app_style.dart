@@ -361,6 +361,10 @@ class AppStyle {
     color: DIManager.findDep<AppColorsController>().darkGreyTextColor,
     fontWeight: FontWeight.w700,
   );
+  static TextStyle drawerTextStyle = TextStyle(
+      fontSize: AppFontSize.fontSize_16,
+      color: DIManager.findCC().primaryColor,
+      fontWeight: AppFontWeight.bold);
 
   static double get appbarElevation => 4.0;
 }
