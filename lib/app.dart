@@ -64,7 +64,7 @@ class _AppState extends State<App> {
                         .copyWith(secondary: DIManager.findCC().primaryColor),
                   ),
                   title: AppConsts.appName,
-                  initialRoute: AboutUsPage.routeName,
+                  initialRoute: SplashScreen.routeName,
                 );
               },
             );
