@@ -58,6 +58,26 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
           ],
         }));
   }
+
+  @override
+  Future<Result<String>> deleteNews(String id) async {
+    return await RemoteDataSource.request(
+        reqiureToken: true,
+        converter: (message) => message as String,
+        method: HttpMethod.DELETE,
+        url: "${AppEndpoints.news}/$id");
+  }
+
+  @override
+  Future<Result<NewsModel>> editNews(NewsModel model) async {
+    return await RemoteDataSource.request(
+        dataOnly: true,
+        data: model.toJson(),
+        reqiureToken: true,
+        converter: (model) => NewsModel.fromJson(model),
+        method: HttpMethod.PATCH,
+        url: "${AppEndpoints.news}/${model.id}");
+  }
 }
 
 abstract class NewsRemoteDataSource {
@@ -65,4 +85,6 @@ abstract class NewsRemoteDataSource {
   Future<Result<NewsModel>> showNews({required String id});
   Future<Result<NewsModel>> addNews(NewsModel newsModel);
   Future<Result<String>> uploadImage(File image);
+  Future<Result<String>> deleteNews(String id);
+  Future<Result<NewsModel>> editNews(NewsModel model);
 }

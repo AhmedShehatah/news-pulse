@@ -6,8 +6,12 @@ class NewsState {
   BaseState showNewsState;
   BaseState createNewsState;
   BaseState uploadImage;
+  BaseState deleteNews;
+  BaseState updateNews;
 
   NewsState({
+    required this.updateNews,
+    required this.deleteNews,
     required this.uploadImage,
     required this.getAllNewsState,
     required this.createNewsState,
@@ -15,6 +19,8 @@ class NewsState {
   });
 
   factory NewsState.initState() => NewsState(
+        updateNews: BaseInitState(),
+        deleteNews: BaseInitState(),
         uploadImage: BaseInitState(),
         getAllNewsState: BaseInitState(),
         createNewsState: BaseInitState(),
@@ -22,12 +28,16 @@ class NewsState {
       );
 
   NewsState copyWith({
+    BaseState? deleteNews,
+    BaseState? updateNews,
     BaseState? getAllNewsState,
     BaseState? createNewsState,
     BaseState? uploadImage,
     BaseState? showNewsState,
   }) =>
       NewsState(
+        updateNews: updateNews ?? this.updateNews,
+        deleteNews: deleteNews ?? this.deleteNews,
         uploadImage: uploadImage ?? this.uploadImage,
         getAllNewsState: getAllNewsState ?? this.getAllNewsState,
         showNewsState: showNewsState ?? this.showNewsState,
