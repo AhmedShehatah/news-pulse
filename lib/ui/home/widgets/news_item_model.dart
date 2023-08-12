@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:news_pulse/core/constants/app_style.dart';
+import 'package:news_pulse/core/constants/dimens.dart';
 import 'package:news_pulse/core/utils/screen_utlis/device_utils.dart';
+import 'package:news_pulse/core/utils/ui_utlis/horizontal_padding.dart';
 import 'package:news_pulse/core/utils/ui_utlis/vertical_padding.dart';
 import 'package:news_pulse/data/models/news_model.dart';
 
@@ -13,53 +16,71 @@ class NewsItemModel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        gradient: LinearGradient(
-            begin: Alignment.bottomLeft,
-            end: Alignment.topRight,
-            colors: [
-              DIManager.findCC().white,
-              DIManager.findCC().white,
-            ]),
-      ),
-      child: Center(
-        child: ListTile(
-          leading: SizedBox(
-            width: ScreenHelper.fromWidth(30),
-            height: ScreenHelper.fromHeight(30),
-            child: CachedNetworkImage(
-              imageUrl: model.imageUrl!,
-              imageBuilder: (context, imageProvider) => Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: imageProvider,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              placeholder: (context, url) => const CircularProgressIndicator(),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-            ),
-          ),
-          title: Text(
-            model.title!,
-            style: const TextStyle(fontSize: 18),
-          ),
-          subtitle: Column(
+    return Padding(
+      padding: Dimens.cardSmallInternalPadding.copyWith(bottom: 0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
+        child: Container(
+          color: DIManager.findCC().white,
+          height: ScreenHelper.fromHeight(15),
+          padding:
+              Dimens.cardInternalPadding.copyWith(left: 0, top: 0, bottom: 0),
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.max,
             children: [
-              const VerticalPadding(0.5),
-              Text(model.content!),
-              const VerticalPadding(1),
-              Row(
-                children: [
-                  Text(model.publisher!),
-                  const Spacer(),
-                  Text(DateFormat("EEEE, MM, dd").format(model.createdAt!)),
-                ],
+              CachedNetworkImage(
+                imageUrl: model.imageUrl ??
+                    'https://www.ncenet.com/wp-content/uploads/2020/04/No-image-found.jpg',
+                width: ScreenHelper.fromWidth(35),
+                height: ScreenHelper.fromHeight(15),
+                fit: BoxFit.fill,
+              ),
+              const HorizontalPadding(2),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    const VerticalPadding(1),
+                    SizedBox(
+                      width: ScreenHelper.fromWidth(45),
+                      child: Text(
+                        model.title ?? 'No Title',
+                        style: AppStyle.titleStyle,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        softWrap: true,
+                      ),
+                    ),
+                    SizedBox(
+                      width: ScreenHelper.fromHeight(25),
+                      child: Text(
+                        model.content ?? 'No Content',
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppStyle.lightSubtitle,
+                      ),
+                    ),
+                    const Spacer(),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          model.publisher ?? 'No Publisher',
+                          style: AppStyle.lightSubtitle,
+                        ),
+                        Text(
+                          DateFormat("EEEE, MM, dd").format(model.createdAt!),
+                          style: AppStyle.lightSubtitle,
+                        ),
+                      ],
+                    ),
+                    const VerticalPadding(1),
+                  ],
+                ),
               )
             ],
           ),
