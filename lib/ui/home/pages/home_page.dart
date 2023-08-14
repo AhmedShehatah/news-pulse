@@ -67,8 +67,18 @@ class _HomePageState extends State<HomePage> {
               ),
             );
           } else {
-            return const Center(
-              child: Text('Error Happened Try Again'),
+            return RefreshIndicator(
+              onRefresh: () async {
+                DIManager.findDep<NewsCubit>().getAllNews();
+              },
+              child: Stack(
+                children: [
+                  ListView(),
+                  const Center(
+                    child: Text('Pull Down To Refresh'),
+                  ),
+                ],
+              ),
             );
           }
         },
