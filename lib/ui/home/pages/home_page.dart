@@ -44,26 +44,41 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             }
-            return ListView.separated(
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return InkWell(
-                    onTap: () {
-                      DIManager.findNavigator().pushNamed(
-                        arguments: newsList[index].id!,
-                        isPublisher
-                            ? PublisherShowNewsPage.routeName
-                            : ShowNewsPage.routeName,
-                      );
-                    },
-                    child: NewsItemModel(model: newsList[index]));
+            return RefreshIndicator(
+              onRefresh: () async {
+                DIManager.findDep<NewsCubit>().getAllNews();
               },
-              itemCount: newsList.length,
-              separatorBuilder: ((context, index) => const Divider()),
+              child: ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return InkWell(
+                      onTap: () {
+                        DIManager.findNavigator().pushNamed(
+                          arguments: newsList[index].id!,
+                          isPublisher
+                              ? PublisherShowNewsPage.routeName
+                              : ShowNewsPage.routeName,
+                        );
+                      },
+                      child: NewsItemModel(model: newsList[index]));
+                },
+                itemCount: newsList.length,
+                separatorBuilder: ((context, index) => const Divider()),
+              ),
             );
           } else {
-            return const Center(
-              child: Text('Error Happened Try Again'),
+            return RefreshIndicator(
+              onRefresh: () async {
+                DIManager.findDep<NewsCubit>().getAllNews();
+              },
+              child: Stack(
+                children: [
+                  ListView(),
+                  const Center(
+                    child: Text('Pull Down To Refresh'),
+                  ),
+                ],
+              ),
             );
           }
         },
